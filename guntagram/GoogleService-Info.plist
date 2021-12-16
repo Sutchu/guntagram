@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>341779287527-8la8u0o8o142pvc8rnebsf99s4dbvpbb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.341779287527-8la8u0o8o142pvc8rnebsf99s4dbvpbb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCT-N8BQTukwrLpz14ZXqsyqMZOTSAaLp4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>341779287527</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.alisutcu.guntagram.guntagram</string>
+	<key>PROJECT_ID</key>
+	<string>gunagram</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gunagram.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:341779287527:ios:ec6151734a71c873508142</string>
+</dict>
+</plist>
