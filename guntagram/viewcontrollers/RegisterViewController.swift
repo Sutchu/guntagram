@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
+    private let db = Firestore.firestore()
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -41,9 +42,28 @@ class RegisterViewController: UIViewController {
                 } else {
                     // Navigate to main screen if register is successfull
                     self.performSegue(withIdentifier: "Register", sender: self)
+                    self.createUserInDatabase()
                 }
               // ...
             }
         }
     }
+    
+    func createUserInDatabase() {
+        if let userMail = Auth.auth().currentUser?.email {
+            db.collection("users").addDocument(data: [
+                "email": userMail,
+                "posts": []
+            ]) { (error) in
+                if let e = error {
+                    print(e)
+                } else {
+                    print("user created suksesful")
+                }
+                
+            }
+        }
+    }
+    
+    
 }

@@ -11,6 +11,7 @@ import FirebaseStorage
 
 class HomeViewController: UIViewController {
     private let storage = Storage.storage().reference()
+    private let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,19 +63,45 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         guard let imageData = image.pngData() else {
             return
         }
-         
-        storage.child("posts/file.png").putData(imageData, metadata: nil, completion: {_, error in
-            guard error == nil else {
-                print("Failed to uplod resim")
-                return
-            }
-            
-            
-        })
         
+        if let userMail = Auth.auth().currentUser?.email {
+            let timestamp = NSDate().timeIntervalSince1970
+            let imagePath = "images/\(userMail)-\(timestamp).png"
+            
+            self.sendImageToStorage(imageData: imageData, userMail: userMail, imagePath: imagePath, timeStamp: timestamp)
+            self.createPostInDatabase(userMail: userMail, imagePath: imagePath, timeStamp: timestamp)
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func sendImageToStorage(imageData: Data, userMail: String, imagePath: String, timeStamp: TimeInterval) {
+        storage.child(imagePath).putData(imageData, metadata: nil, completion: {_, error in
+            guard error == nil else {
+                print("Failed to uplod resim")
+                return
+            }
+        })
+        
+    }
+    
+    func createPostInDatabase(userMail: String, imagePath: String, timeStamp: TimeInterval) {
+        let timestamp = NSDate().timeIntervalSince1970
+        
+        db.collection("posts").addDocument(data: [
+            "like_count": 0,
+            "upload_time": timestamp,
+            "owner": userMail,
+            "image_path": imagePath
+        ]) { (error) in
+            if let e = error {
+                print(e)
+            } else {
+                print("user created suksesful")
+            }
+            
+        }
     }
 }
