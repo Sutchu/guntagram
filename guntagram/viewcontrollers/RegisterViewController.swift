@@ -50,9 +50,9 @@ class RegisterViewController: UIViewController {
     }
     
     func createUserInDatabase() {
-        if let userMail = Auth.auth().currentUser?.email {
-            db.collection("users").addDocument(data: [
-                "email": userMail,
+        if let user = Auth.auth().currentUser, let usermail = user.email {
+            db.collection("users").document(user.uid).setData([
+                "email": usermail,
                 "posts": []
             ]) { (error) in
                 if let e = error {

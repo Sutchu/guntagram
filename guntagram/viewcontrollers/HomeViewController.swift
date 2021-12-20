@@ -20,7 +20,6 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -30,6 +29,7 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         let firebaseAuth = Auth.auth()
         do {
@@ -38,11 +38,7 @@ class HomeViewController: UIViewController {
         } catch let signOutError as NSError {
           print("Error signing out: %@", signOutError)
         }
-
     }
-    
-    
-    
 }
 extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -55,6 +51,7 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             present(picker, animated: true)
             
         }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
@@ -64,12 +61,14 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             return
         }
         
-        if let userMail = Auth.auth().currentUser?.email {
+        if let userId = Auth.auth().currentUser?.uid {
             let timestamp = NSDate().timeIntervalSince1970
-            let imagePath = "images/\(userMail)-\(timestamp).png"
+            let imagePath = "images/\(userId)-\(timestamp).png"
+            let userReference = db.collection("users").document(userId)
             
-            self.sendImageToStorage(imageData: imageData, userMail: userMail, imagePath: imagePath, timeStamp: timestamp)
-            self.createPostInDatabase(userMail: userMail, imagePath: imagePath, timeStamp: timestamp)
+            let postReference = self.createPostInDatabase(userReference: userReference, imagePath: imagePath, timeStamp: timestamp)
+            self.sendImageToStorage(imageData: imageData, imagePath: imagePath, timeStamp: timestamp)
+            self.addPostReferenceToUserInDatabase(postReference: postReference, userReference: userReference)
         }
     }
     
@@ -77,23 +76,21 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func sendImageToStorage(imageData: Data, userMail: String, imagePath: String, timeStamp: TimeInterval) {
+    func sendImageToStorage(imageData: Data, imagePath: String, timeStamp: TimeInterval) {
         storage.child(imagePath).putData(imageData, metadata: nil, completion: {_, error in
             guard error == nil else {
                 print("Failed to uplod resim")
                 return
             }
         })
-        
     }
     
-    func createPostInDatabase(userMail: String, imagePath: String, timeStamp: TimeInterval) {
-        let timestamp = NSDate().timeIntervalSince1970
+    func createPostInDatabase(userReference: DocumentReference, imagePath: String, timeStamp: TimeInterval) -> DocumentReference {
         
-        db.collection("posts").addDocument(data: [
+        return db.collection("posts").addDocument(data: [
             "like_count": 0,
-            "upload_time": timestamp,
-            "owner": userMail,
+            "upload_time": timeStamp,
+            "owner": userReference,
             "image_path": imagePath
         ]) { (error) in
             if let e = error {
@@ -101,7 +98,12 @@ extension HomeViewController: UIImagePickerControllerDelegate, UINavigationContr
             } else {
                 print("user created suksesful")
             }
-            
         }
+    }
+    
+    func addPostReferenceToUserInDatabase(postReference: DocumentReference, userReference: DocumentReference) {
+        userReference.updateData([
+            "posts": FieldValue.arrayUnion([postReference])
+        ])
     }
 }
