@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import UIKit
+import Firebase
 
 struct Post {
-    
+    let uiImage: UIImage
+    let likeCount: Int
+    let owner: DocumentReference
 }

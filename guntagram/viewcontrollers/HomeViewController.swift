@@ -2,24 +2,24 @@
 //  HomeViewController.swift
 //  guntagram
 //
-//  Created by Ali Sutcu on 16.12.2021.
+//  Created by Ali Sutcu on 21.12.2021.
 //
 
 import UIKit
-import Firebase
-import FirebaseStorage
 
 class HomeViewController: UIViewController {
-    private let storage = Storage.storage().reference()
-    private let db = Firestore.firestore()
 
+    @IBOutlet weak var postsTableView: UITableView!
+    let dataSource = PostDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-
+        self.postsTableView.rowHeight = 100
+        dataSource.delegate = self
+        dataSource.fetchAllPosts()
         // Do any additional setup after loading the view.
     }
     
+
     /*
     // MARK: - Navigation
 
@@ -29,81 +29,31 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-          try firebaseAuth.signOut()
-            navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
-        }
-    }
+
 }
-extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+extension HomeViewController: UITableViewDataSource {
     
-    
-    @IBAction func uploadPostButtonPressed(_ sender: Any) {
-            let picker = UIImagePickerController()
-            picker.sourceType = .photoLibrary
-            picker.delegate = self
-            picker.allowsEditing = true
-            present(picker, animated: true)
-            
-        }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
-            return
-        }
-        guard let imageData = image.pngData() else {
-            return
-        }
-        
-        if let userId = Auth.auth().currentUser?.uid {
-            let timestamp = NSDate().timeIntervalSince1970
-            let imagePath = "images/\(userId)-\(timestamp).png"
-            let userReference = db.collection("users").document(userId)
-            
-            let postReference = self.createPostInDatabase(userReference: userReference, imagePath: imagePath, timeStamp: timestamp)
-            self.sendImageToStorage(imageData: imageData, imagePath: imagePath, timeStamp: timestamp)
-            self.addPostReferenceToUserInDatabase(postReference: postReference, userReference: userReference)
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.getPostCount()
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath) as! PostTableViewCell
+        let post = dataSource.getPostAtIndex(index: indexPath.row)
+        cell.postImage.image = post.uiImage
+        cell.likeLabel.text = "\(post.likeCount) likes, \(post.owner) "
+        return cell
     }
     
-    func sendImageToStorage(imageData: Data, imagePath: String, timeStamp: TimeInterval) {
-        storage.child(imagePath).putData(imageData, metadata: nil, completion: {_, error in
-            guard error == nil else {
-                print("Failed to uplod resim")
-                return
-            }
-        })
+    
+}
+
+extension HomeViewController: PostDataSourceProtocol {
+    func postLoaded() {
+        self.postsTableView.reloadData()
+        print("gobrrrrr")
     }
     
-    func createPostInDatabase(userReference: DocumentReference, imagePath: String, timeStamp: TimeInterval) -> DocumentReference {
-        
-        return db.collection("posts").addDocument(data: [
-            "like_count": 0,
-            "upload_time": timeStamp,
-            "owner": userReference,
-            "image_path": imagePath
-        ]) { (error) in
-            if let e = error {
-                print(e)
-            } else {
-                print("user created suksesful")
-            }
-        }
-    }
     
-    func addPostReferenceToUserInDatabase(postReference: DocumentReference, userReference: DocumentReference) {
-        userReference.updateData([
-            "posts": FieldValue.arrayUnion([postReference])
-        ])
-    }
 }

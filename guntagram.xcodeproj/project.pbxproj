@@ -17,8 +17,12 @@
 		0F079FEC276BBB7000CD0F50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F079FEB276BBB7000CD0F50 /* GoogleService-Info.plist */; };
 		0F079FEF276BC50D00CD0F50 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FEE276BC50D00CD0F50 /* LoginViewController.swift */; };
 		0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */; };
-		0F079FF3276BCA0A00CD0F50 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF2276BCA0A00CD0F50 /* HomeViewController.swift */; };
+		0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */; };
 		0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF5276BCB7500CD0F50 /* Post.swift */; };
+		0F93FCE927713841004779D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCE827713841004779D0 /* HomeViewController.swift */; };
+		0F93FCEB2771407C004779D0 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCEA2771407C004779D0 /* PostDataSource.swift */; };
+		0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCED277145C8004779D0 /* PostTableViewCell.swift */; };
+		0F93FCF127714E06004779D0 /* PostDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCF027714E06004779D0 /* PostDataSourceProtocol.swift */; };
 		1F8739012D80AE11B05B1208 /* Pods_guntagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E2C2D43E66E5CA8343C014 /* Pods_guntagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,8 +40,12 @@
 		0F079FEB276BBB7000CD0F50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0F079FEE276BC50D00CD0F50 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		0F079FF2276BCA0A00CD0F50 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUploadViewController.swift; sourceTree = "<group>"; };
 		0F079FF5276BCB7500CD0F50 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0F93FCE827713841004779D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0F93FCEA2771407C004779D0 /* PostDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
+		0F93FCED277145C8004779D0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		0F93FCF027714E06004779D0 /* PostDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataSourceProtocol.swift; sourceTree = "<group>"; };
 		19924A33848EC223A2ED11A2 /* Pods-guntagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.debug.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.debug.xcconfig"; sourceTree = "<group>"; };
 		63926B63A8D56CD8B8A7C187 /* Pods-guntagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.release.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +83,8 @@
 		0F079FD1276BBA9D00CD0F50 /* guntagram */ = {
 			isa = PBXGroup;
 			children = (
+				0F93FCEF27714DEB004779D0 /* Protocols */,
+				0F93FCEC277145AF004779D0 /* cells */,
 				0F079FF4276BCB6200CD0F50 /* models */,
 				0F079FED276BC4EE00CD0F50 /* viewcontrollers */,
 				0F079FEB276BBB7000CD0F50 /* GoogleService-Info.plist */,
@@ -95,7 +105,8 @@
 			children = (
 				0F079FEE276BC50D00CD0F50 /* LoginViewController.swift */,
 				0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */,
-				0F079FF2276BCA0A00CD0F50 /* HomeViewController.swift */,
+				0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */,
+				0F93FCE827713841004779D0 /* HomeViewController.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -104,8 +115,25 @@
 			isa = PBXGroup;
 			children = (
 				0F079FF5276BCB7500CD0F50 /* Post.swift */,
+				0F93FCEA2771407C004779D0 /* PostDataSource.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		0F93FCEC277145AF004779D0 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				0F93FCED277145C8004779D0 /* PostTableViewCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		0F93FCEF27714DEB004779D0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0F93FCF027714E06004779D0 /* PostDataSourceProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		60D4CDA58D3930B333CE25DE /* Frameworks */ = {
@@ -241,13 +269,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */,
+				0F93FCEB2771407C004779D0 /* PostDataSource.swift in Sources */,
+				0F93FCF127714E06004779D0 /* PostDataSourceProtocol.swift in Sources */,
 				0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */,
 				0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */,
 				0F079FD3276BBA9D00CD0F50 /* AppDelegate.swift in Sources */,
 				0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */,
 				0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */,
+				0F93FCE927713841004779D0 /* HomeViewController.swift in Sources */,
 				0F079FEF276BC50D00CD0F50 /* LoginViewController.swift in Sources */,
-				0F079FF3276BCA0A00CD0F50 /* HomeViewController.swift in Sources */,
+				0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */,
 				0F079FD5276BBA9D00CD0F50 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
