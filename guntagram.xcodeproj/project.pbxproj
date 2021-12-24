@@ -19,6 +19,10 @@
 		0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */; };
 		0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */; };
 		0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF5276BCB7500CD0F50 /* Post.swift */; };
+		0F81A60E277658F300920315 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60D277658F300920315 /* User.swift */; };
+		0F81A610277659E700920315 /* UserDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60F277659E700920315 /* UserDataSource.swift */; };
+		0F81A613277662B500920315 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A612277662B500920315 /* UserError.swift */; };
+		0F81A61527766B8100920315 /* UserDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A61427766B8100920315 /* UserDataSourceProtocol.swift */; };
 		0F93FCE927713841004779D0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCE827713841004779D0 /* HomeViewController.swift */; };
 		0F93FCEB2771407C004779D0 /* PostDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCEA2771407C004779D0 /* PostDataSource.swift */; };
 		0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCED277145C8004779D0 /* PostTableViewCell.swift */; };
@@ -42,6 +46,10 @@
 		0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUploadViewController.swift; sourceTree = "<group>"; };
 		0F079FF5276BCB7500CD0F50 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0F81A60D277658F300920315 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0F81A60F277659E700920315 /* UserDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSource.swift; sourceTree = "<group>"; };
+		0F81A612277662B500920315 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
+		0F81A61427766B8100920315 /* UserDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSourceProtocol.swift; sourceTree = "<group>"; };
 		0F93FCE827713841004779D0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0F93FCEA2771407C004779D0 /* PostDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataSource.swift; sourceTree = "<group>"; };
 		0F93FCED277145C8004779D0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,6 +91,7 @@
 		0F079FD1276BBA9D00CD0F50 /* guntagram */ = {
 			isa = PBXGroup;
 			children = (
+				0F81A6112776628A00920315 /* Errors */,
 				0F93FCEF27714DEB004779D0 /* Protocols */,
 				0F93FCEC277145AF004779D0 /* cells */,
 				0F079FF4276BCB6200CD0F50 /* models */,
@@ -114,10 +123,36 @@
 		0F079FF4276BCB6200CD0F50 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				0F81A60C277658B300920315 /* User */,
+				0F81A60B277658A400920315 /* Posts */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		0F81A60B277658A400920315 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
 				0F079FF5276BCB7500CD0F50 /* Post.swift */,
 				0F93FCEA2771407C004779D0 /* PostDataSource.swift */,
 			);
-			path = models;
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		0F81A60C277658B300920315 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				0F81A60D277658F300920315 /* User.swift */,
+				0F81A60F277659E700920315 /* UserDataSource.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		0F81A6112776628A00920315 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				0F81A612277662B500920315 /* UserError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		0F93FCEC277145AF004779D0 /* cells */ = {
@@ -132,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				0F93FCF027714E06004779D0 /* PostDataSourceProtocol.swift */,
+				0F81A61427766B8100920315 /* UserDataSourceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -269,16 +305,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F81A60E277658F300920315 /* User.swift in Sources */,
 				0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */,
 				0F93FCEB2771407C004779D0 /* PostDataSource.swift in Sources */,
+				0F81A61527766B8100920315 /* UserDataSourceProtocol.swift in Sources */,
 				0F93FCF127714E06004779D0 /* PostDataSourceProtocol.swift in Sources */,
 				0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */,
 				0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */,
 				0F079FD3276BBA9D00CD0F50 /* AppDelegate.swift in Sources */,
 				0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */,
+				0F81A613277662B500920315 /* UserError.swift in Sources */,
 				0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */,
 				0F93FCE927713841004779D0 /* HomeViewController.swift in Sources */,
 				0F079FEF276BC50D00CD0F50 /* LoginViewController.swift in Sources */,
+				0F81A610277659E700920315 /* UserDataSource.swift in Sources */,
 				0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */,
 				0F079FD5276BBA9D00CD0F50 /* SceneDelegate.swift in Sources */,
 			);

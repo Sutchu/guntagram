@@ -28,7 +28,6 @@ class PostDataSource {
                     let ownerReference = document.get("owner") as! DocumentReference
                     
                     //let uploadTime = document.value(forKey: "upload_time")
-                    //print(imagePath)
                     // Create a reference to the file you want to download
                     let imageRef = self.storage.child(imagePath)
 
@@ -38,7 +37,6 @@ class PostDataSource {
                             print("Error occured when getting image with url from storage \(error)")
                         } else {
                             if let image = UIImage(data: data!) {
-                                print("saas")
                                 self.postArray.append(Post(uiImage: image, likeCount: likeCount, owner: ownerReference))
                                 self.delegate?.postLoaded()
 
@@ -46,7 +44,7 @@ class PostDataSource {
                         }
                     }
                 }
-                            }
+            }
         }
     }
     
@@ -55,7 +53,6 @@ class PostDataSource {
     }
     
     func getPostCount() -> Int {
-        print(postArray.count)
         return postArray.count
     }
 }

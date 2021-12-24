@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var postsTableView: UITableView!
+    
     let dataSource = PostDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,6 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: PostDataSourceProtocol {
     func postLoaded() {
         self.postsTableView.reloadData()
-        print("gobrrrrr")
     }
     
     
