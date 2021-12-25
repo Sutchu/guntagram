@@ -17,7 +17,8 @@ class UserManager {
     func logoutUser() {
         do {
             try firebaseAuth.signOut()
-                self.delegate?.userDidLogout()
+            FireStoreConstants.shared.userReference = nil
+            self.delegate?.userDidLogout()
         } catch let signOutError as NSError {
             self.delegate?.errorOccured(error: signOutError)
         }

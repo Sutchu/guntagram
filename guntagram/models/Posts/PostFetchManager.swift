@@ -18,7 +18,7 @@ class PostFetchManager {
     var delegate: PostFetchManagerProtocol?
     
     func fetchAllPosts() {
-        let postsRef = db.collection("posts").order(by: "upload_time").getDocuments() { (querySnapshot, err) in
+        db.collection("posts").order(by: "upload_time").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -26,6 +26,7 @@ class PostFetchManager {
                     let likeCount = document.get("like_count") as! Int
                     let imagePath = document.get("image_path") as! String
                     let ownerReference = document.get("owner") as! DocumentReference
+                    let likingUsers = document.get("liking_users") as! [DocumentReference]
                     
                     //let uploadTime = document.value(forKey: "upload_time")
                     // Create a reference to the file you want to download
@@ -37,7 +38,8 @@ class PostFetchManager {
                             print("Error occured when getting image with url from storage \(error)")
                         } else {
                             if let image = UIImage(data: data!) {
-                                self.postArray.append(Post(uiImage: image, likeCount: likeCount, owner: ownerReference))
+                                let isPostLiked = likingUsers.contains(FireStoreConstants.shared.userReference!)
+                                self.postArray.append(Post(uiImage: image, likeCount: likeCount, owner: ownerReference, postReference: document.reference, likingUsers: likingUsers, isPostLiked: isPostLiked))
                                 self.delegate?.postLoaded()
 
                             }

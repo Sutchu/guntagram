@@ -34,6 +34,9 @@
 		0F93FCEB2771407C004779D0 /* PostFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCEA2771407C004779D0 /* PostFetchManager.swift */; };
 		0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCED277145C8004779D0 /* PostTableViewCell.swift */; };
 		0F93FCF127714E06004779D0 /* PostFetchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F93FCF027714E06004779D0 /* PostFetchManagerProtocol.swift */; };
+		0FCF0CA627776BF5009F1C0A /* PostUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF0CA527776BF5009F1C0A /* PostUpdateManager.swift */; };
+		0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */; };
+		0FCF0CAD27777DB9009F1C0A /* FireStoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */; };
 		1F8739012D80AE11B05B1208 /* Pods_guntagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E2C2D43E66E5CA8343C014 /* Pods_guntagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,9 @@
 		0F93FCEA2771407C004779D0 /* PostFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFetchManager.swift; sourceTree = "<group>"; };
 		0F93FCED277145C8004779D0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		0F93FCF027714E06004779D0 /* PostFetchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFetchManagerProtocol.swift; sourceTree = "<group>"; };
+		0FCF0CA527776BF5009F1C0A /* PostUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateManager.swift; sourceTree = "<group>"; };
+		0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateManagerProtocol.swift; sourceTree = "<group>"; };
+		0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreConstants.swift; sourceTree = "<group>"; };
 		19924A33848EC223A2ED11A2 /* Pods-guntagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.debug.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.debug.xcconfig"; sourceTree = "<group>"; };
 		63926B63A8D56CD8B8A7C187 /* Pods-guntagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.release.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +111,7 @@
 		0F079FD1276BBA9D00CD0F50 /* guntagram */ = {
 			isa = PBXGroup;
 			children = (
+				0FCF0CA927777CF8009F1C0A /* Defaults */,
 				0F81A6112776628A00920315 /* Errors */,
 				0F93FCEF27714DEB004779D0 /* Protocols */,
 				0F93FCEC277145AF004779D0 /* cells */,
@@ -150,6 +157,7 @@
 				0F079FF5276BCB7500CD0F50 /* Post.swift */,
 				0F93FCEA2771407C004779D0 /* PostFetchManager.swift */,
 				0F81A61827767F0000920315 /* PostUploadManager.swift */,
+				0FCF0CA527776BF5009F1C0A /* PostUpdateManager.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 			children = (
 				0F93FCF027714E06004779D0 /* PostFetchManagerProtocol.swift */,
 				0F81A61627767EE000920315 /* PostUploadManagerProtocol.swift */,
+				0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -207,6 +216,14 @@
 				0F81A620277683FA00920315 /* User */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0FCF0CA927777CF8009F1C0A /* Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */,
+			);
+			path = Defaults;
 			sourceTree = "<group>";
 		};
 		60D4CDA58D3930B333CE25DE /* Frameworks */ = {
@@ -347,7 +364,10 @@
 				0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */,
 				0F81A61927767F0000920315 /* PostUploadManager.swift in Sources */,
 				0F93FCEB2771407C004779D0 /* PostFetchManager.swift in Sources */,
+				0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */,
 				0F81A61527766B8100920315 /* UserRegisterManagerProtocol.swift in Sources */,
+				0FCF0CAD27777DB9009F1C0A /* FireStoreConstants.swift in Sources */,
+				0FCF0CA627776BF5009F1C0A /* PostUpdateManager.swift in Sources */,
 				0F93FCF127714E06004779D0 /* PostFetchManagerProtocol.swift in Sources */,
 				0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */,
 				0F81A6232776945C00920315 /* UserManagerProtocol.swift in Sources */,

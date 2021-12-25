@@ -33,7 +33,8 @@ class UserRegisterManager {
     
     func createUserInDatabase(userName: String) {
         if let user = Auth.auth().currentUser, let usermail = user.email {
-            db.collection("users").document(user.uid).setData([
+            let userReference = db.collection("users").document(user.uid)
+            userReference.setData([
                 "email": usermail,
                 "posts": [],
                 "user_name": userName
@@ -42,8 +43,8 @@ class UserRegisterManager {
                     print(error)
                     self.delegate?.registerFailed(error: error)
                 } else {
+                    FireStoreConstants.shared.userReference = userReference
                     self.delegate?.userIsRegistered()
-                    print("user created suksesful")
                 }
             }
         }

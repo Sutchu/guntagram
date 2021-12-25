@@ -20,7 +20,12 @@ class UserLoginManager {
             if let e = error {
                 self?.delegate?.loginFailed(error: e)
             } else {
-                self?.delegate?.userLoggedIn()
+                
+                if let authResult = authResult {
+                    let userReference = self?.db.collection("users").document(authResult.user.uid)
+                    FireStoreConstants.shared.userReference = userReference
+                    self?.delegate?.userLoggedIn()
+                }
             }
           // ...
         }

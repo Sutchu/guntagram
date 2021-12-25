@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hdU-dP-07q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hdU-dP-07q">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -318,6 +318,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="U4W-Ff-6o0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="703"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="post" rowHeight="500" id="dLW-7T-57F" customClass="PostTableViewCell" customModule="guntagram" customModuleProvider="target">
@@ -330,8 +331,8 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5yK-JV-FjB">
                                                     <rect key="frame" x="0.0" y="10" width="414" height="430"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
-                                                    <rect key="frame" x="20" y="448" width="374" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
+                                                    <rect key="frame" x="106" y="460" width="202" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="BCA-fE-Ozb"/>
@@ -340,6 +341,17 @@
                                                     <color key="textColor" systemColor="systemPurpleColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAN-Vm-fwC">
+                                                    <rect key="frame" x="26" y="454.5" width="60" height="31"/>
+                                                    <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="6QR-sE-Wtu"/>
+                                                    </constraints>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Like"/>
+                                                    <connections>
+                                                        <action selector="likeButtonPressed:" destination="dLW-7T-57F" eventType="touchUpInside" id="mQr-en-Ky5"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PEN-p9-wQY" firstAttribute="centerX" secondItem="aKw-bq-zUX" secondAttribute="centerX" id="2aG-xv-fmj"/>
@@ -347,12 +359,17 @@
                                                 <constraint firstItem="PEN-p9-wQY" firstAttribute="top" secondItem="5yK-JV-FjB" secondAttribute="bottom" constant="20" id="LVz-pb-Pev"/>
                                                 <constraint firstAttribute="bottom" secondItem="PEN-p9-wQY" secondAttribute="bottom" constant="20" id="VBZ-Ly-DlJ"/>
                                                 <constraint firstItem="5yK-JV-FjB" firstAttribute="top" secondItem="aKw-bq-zUX" secondAttribute="top" constant="10" id="iY3-eT-T8e"/>
+                                                <constraint firstItem="oAN-Vm-fwC" firstAttribute="leading" secondItem="aKw-bq-zUX" secondAttribute="leading" constant="26" id="mQe-jU-OS0"/>
                                                 <constraint firstItem="5yK-JV-FjB" firstAttribute="centerX" secondItem="aKw-bq-zUX" secondAttribute="centerX" id="qT5-cF-by3"/>
                                                 <constraint firstAttribute="trailing" secondItem="5yK-JV-FjB" secondAttribute="trailing" id="qd2-oj-uvf"/>
+                                                <constraint firstItem="PEN-p9-wQY" firstAttribute="leading" secondItem="oAN-Vm-fwC" secondAttribute="trailing" constant="20" id="uoO-OO-plj"/>
+                                                <constraint firstItem="oAN-Vm-fwC" firstAttribute="centerY" secondItem="PEN-p9-wQY" secondAttribute="centerY" id="wvv-fA-GGD"/>
+                                                <constraint firstItem="oAN-Vm-fwC" firstAttribute="height" secondItem="PEN-p9-wQY" secondAttribute="height" multiplier="1.55" id="xIu-f0-gMF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="likeButton" destination="oAN-Vm-fwC" id="Z8b-3P-hR5"/>
                                             <outlet property="likeLabel" destination="PEN-p9-wQY" id="KKQ-WL-Che"/>
                                             <outlet property="postImage" destination="5yK-JV-FjB" id="4Vf-bx-Wbd"/>
                                         </connections>

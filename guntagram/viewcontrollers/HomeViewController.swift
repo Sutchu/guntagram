@@ -11,45 +11,42 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var postsTableView: UITableView!
     
-    let dataSource = PostFetchManager()
+    let fetchManager = PostFetchManager()
+    let updateManager = PostUpdateManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.hidesBackButton = true
-        dataSource.delegate = self
-        dataSource.fetchAllPosts()
+        fetchManager.delegate = self
+        updateManager.delegate = self
+        fetchManager.fetchAllPosts()
         // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.getPostCount()
+        return fetchManager.getPostCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath) as! PostTableViewCell
-        let post = dataSource.getPostAtIndex(index: indexPath.row)
-        cell.postImage.image = post.uiImage
-        cell.likeLabel.text = "\(post.likeCount) likes, \(post.owner) "
+        cell.postObject = fetchManager.getPostAtIndex(index: indexPath.row)
+        cell.updateFields()
+        
+        cell.likePressedCallback = {
+            self.updateManager.changeLikeCount(post: cell.postObject!)
+            cell.updateFields()
+            // TODO: decrease like count if there is an error
+        }
         return cell
     }
-    
 }
+
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let post = dataSource.getPostAtIndex(index: indexPath.row)
+        let post = fetchManager.getPostAtIndex(index: indexPath.row)
         let image = post.uiImage
         let myImageWidth = image.size.width
         let myImageHeight = image.size.height
@@ -65,5 +62,10 @@ extension HomeViewController: PostFetchManagerProtocol {
         self.postsTableView.reloadData()
     }
     
-    
+}
+
+extension HomeViewController: PostUpdateManagerProtocol {
+    func updateFailed(error: Error) {
+        print(error)
+    }
 }

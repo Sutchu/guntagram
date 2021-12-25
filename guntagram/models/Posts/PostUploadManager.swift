@@ -68,7 +68,8 @@ class PostUploadManager {
             "like_count": 0,
             "upload_time": timeStamp,
             "owner": userReference,
-            "image_path": imagePath
+            "image_path": imagePath,
+            "liking_users": []
         ]) { (error) in
             if let e = error {
                 print(e)
@@ -85,7 +86,6 @@ class PostUploadManager {
             "posts": FieldValue.arrayUnion([postReference])
         ]) { err in
             if let err = err {
-                //self.delegate?.uploadFailed(error: err)
                 returnVal = err
             }
             completion(returnVal)
