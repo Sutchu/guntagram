@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.navigationItem.hidesBackButton = true
-        self.postsTableView.rowHeight = 100
         dataSource.delegate = self
         dataSource.fetchAllPosts()
         // Do any additional setup after loading the view.
@@ -47,7 +46,12 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
     
-    
+}
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let post = dataSource.getPostAtIndex(index: indexPath.row)
+        return post.uiImage.size.height/post.uiImage.size.width * self.view.frame.width + 70
+    }
 }
 
 extension HomeViewController: PostFetchManagerProtocol {
