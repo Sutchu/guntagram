@@ -50,7 +50,13 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let post = dataSource.getPostAtIndex(index: indexPath.row)
-        return post.uiImage.size.height/post.uiImage.size.width * self.view.frame.width + 70
+        let image = post.uiImage
+        let myImageWidth = image.size.width
+        let myImageHeight = image.size.height
+        let myViewWidth = self.view.frame.size.width
+        let ratio = myViewWidth/myImageWidth
+        let scaledHeight = myImageHeight * ratio
+        return scaledHeight + 70
     }
 }
 
