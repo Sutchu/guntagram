@@ -17,13 +17,13 @@ class PostUpdateManager {
         let postReference = post.postReference
         if post.isPostLiked {
             modifyPostObject(post: post, isLiked: true)
-            self.addToLikingUsers(postReference: postReference, completion: {
-                self.increaseLikeCount(postReference: postReference)
+            self.removeFromLikingUsers(postReference: postReference, completion: {
+                self.decreaseLikeCount(postReference: postReference)
             })
         } else {
             modifyPostObject(post: post, isLiked: false)
-            self.removeFromLikingUsers(postReference: postReference, completion: {
-                self.decreaseLikeCount(postReference: postReference)
+            self.addToLikingUsers(postReference: postReference, completion: {
+                self.increaseLikeCount(postReference: postReference)
             })
         }        
     }

@@ -12,7 +12,7 @@ struct FireStoreConstants {
     
     static var shared = FireStoreConstants()
     var userReference: DocumentReference?
-    
+    var userName: String?
     private init() {}
     
 }

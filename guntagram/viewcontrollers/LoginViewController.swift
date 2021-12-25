@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userDataSource.delegate = self
+        self.passwordTextField.delegate = self
+        self.emailTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -49,3 +51,9 @@ extension LoginViewController: UserLoginManagerProtocol {
     
 }
 
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
+}

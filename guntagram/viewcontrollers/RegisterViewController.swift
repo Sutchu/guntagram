@@ -19,6 +19,9 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userDataSource.delegate = self
+        self.usernameTextField.delegate = self
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -54,3 +57,11 @@ extension RegisterViewController: UserRegisterManagerProtocol {
     }
     
 }
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
+}
+

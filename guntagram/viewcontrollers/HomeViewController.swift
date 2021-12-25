@@ -11,15 +11,25 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var postsTableView: UITableView!
     
+    let refreshControl = UIRefreshControl()
     let fetchManager = PostFetchManager()
     let updateManager = PostUpdateManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        postsTableView.addSubview(refreshControl) // not required when using UITableViewController
         self.tabBarController?.navigationItem.hidesBackButton = true
         fetchManager.delegate = self
         updateManager.delegate = self
-        fetchManager.fetchAllPosts()
+        fetchManager.fetchNewPosts()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+       // Code to refresh table view
+        fetchManager.fetchNewPosts()
     }
 
 }
@@ -46,20 +56,23 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let post = fetchManager.getPostAtIndex(index: indexPath.row)
-        let image = post.uiImage
-        let myImageWidth = image.size.width
-        let myImageHeight = image.size.height
-        let myViewWidth = self.view.frame.size.width
-        let ratio = myViewWidth/myImageWidth
-        let scaledHeight = myImageHeight * ratio
-        return scaledHeight + 70
+        if let post = fetchManager.getPostAtIndex(index: indexPath.row) {
+            let image = post.uiImage
+            let myImageWidth = image.size.width
+            let myImageHeight = image.size.height
+            let myViewWidth = self.view.frame.size.width
+            let ratio = myViewWidth/myImageWidth
+            let scaledHeight = myImageHeight * ratio
+            return scaledHeight + 95
+        }
+        return 0
     }
 }
 
 extension HomeViewController: PostFetchManagerProtocol {
     func postLoaded() {
         self.postsTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
 }

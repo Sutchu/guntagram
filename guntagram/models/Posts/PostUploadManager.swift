@@ -69,7 +69,8 @@ class PostUploadManager {
             "upload_time": timeStamp,
             "owner": userReference,
             "image_path": imagePath,
-            "liking_users": []
+            "liking_users": [],
+            "owner_username": FireStoreConstants.shared.userName
         ]) { (error) in
             if let e = error {
                 print(e)

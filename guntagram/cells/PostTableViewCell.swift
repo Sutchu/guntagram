@@ -11,6 +11,7 @@ class PostTableViewCell: UITableViewCell {
     var likePressedCallback: (() -> Void)?
     var postObject: Post?
 
+    @IBOutlet weak var ownerUsernameLabel: UILabel!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
@@ -26,6 +27,7 @@ class PostTableViewCell: UITableViewCell {
         if let postObject = self.postObject {
             self.likeLabel.text = "\(postObject.likeCount) likes, \(postObject.owner)"
             self.postImage.image = postObject.uiImage
+            self.ownerUsernameLabel.text = postObject.ownerUsername
             if postObject.isPostLiked {
                 likeButton.setTitle("Unlike", for: .normal)
             } else {
