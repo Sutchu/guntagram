@@ -11,15 +11,15 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var postsTableView: UITableView!
     
-    let dataSource = PostDataSource()
+    let dataSource = PostFetchManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.navigationItem.hidesBackButton = true
         self.postsTableView.rowHeight = 100
         dataSource.delegate = self
         dataSource.fetchAllPosts()
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -50,7 +50,7 @@ extension HomeViewController: UITableViewDataSource {
     
 }
 
-extension HomeViewController: PostDataSourceProtocol {
+extension HomeViewController: PostFetchManagerProtocol {
     func postLoaded() {
         self.postsTableView.reloadData()
     }

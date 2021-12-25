@@ -10,13 +10,12 @@ import Firebase
 import FirebaseStorage
 
 class PostUploadViewController: UIViewController {
-    private let storage = Storage.storage().reference()
-    private let db = Firestore.firestore()
-
+    private let postDataManager = PostUploadManager()
+    
+    @IBOutlet weak var resultLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-
+        self.postDataManager.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -30,16 +29,8 @@ class PostUploadViewController: UIViewController {
     }
     */
     
-    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-                navigationController?.popToRootViewController(animated: true)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-    }
 }
+
 extension PostUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
@@ -60,50 +51,24 @@ extension PostUploadViewController: UIImagePickerControllerDelegate, UINavigatio
         guard let imageData = image.pngData() else {
             return
         }
+        self.postDataManager.uploadPost(imageData: imageData)
         
-        if let userId = Auth.auth().currentUser?.uid {
-            let timestamp = NSDate().timeIntervalSince1970
-            let imagePath = "images/\(userId)-\(timestamp).png"
-            let userReference = db.collection("users").document(userId)
-            
-            let postReference = self.createPostInDatabase(userReference: userReference, imagePath: imagePath, timeStamp: timestamp)
-            self.sendImageToStorage(imageData: imageData, imagePath: imagePath, timeStamp: timestamp)
-            self.addPostReferenceToUserInDatabase(postReference: postReference, userReference: userReference)
-        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func sendImageToStorage(imageData: Data, imagePath: String, timeStamp: TimeInterval) {
-        storage.child(imagePath).putData(imageData, metadata: nil, completion: {_, error in
-            guard error == nil else {
-                print("Failed to uplod resim")
-                return
-            }
-        })
+}
+
+extension PostUploadViewController: PostUploadManagerProtocol {
+    func uploadFailed(error: Error) {
+        self.resultLabel.text = "error"
     }
     
-    func createPostInDatabase(userReference: DocumentReference, imagePath: String, timeStamp: TimeInterval) -> DocumentReference {
-        
-        return db.collection("posts").addDocument(data: [
-            "like_count": 0,
-            "upload_time": timeStamp,
-            "owner": userReference,
-            "image_path": imagePath
-        ]) { (error) in
-            if let e = error {
-                print(e)
-            } else {
-                print("user created suksesful")
-            }
-        }
+    func postUploaded() {
+        self.resultLabel.text = "Success!"
+
     }
     
-    func addPostReferenceToUserInDatabase(postReference: DocumentReference, userReference: DocumentReference) {
-        userReference.updateData([
-            "posts": FieldValue.arrayUnion([postReference])
-        ])
-    }
 }

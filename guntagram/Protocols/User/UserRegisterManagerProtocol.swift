@@ -7,10 +7,8 @@
 
 import Foundation
 
-protocol UserDataSourceProtocol {
+protocol UserRegisterManagerProtocol {
     
     func registerFailed(error: Error)
     func userIsRegistered()
-    func loginFailed(error: Error)
-    func userLoggedIn()
 }

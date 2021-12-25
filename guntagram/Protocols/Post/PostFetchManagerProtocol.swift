@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PostDataSourceProtocol {
+protocol PostFetchManagerProtocol {
     func postLoaded()
 }

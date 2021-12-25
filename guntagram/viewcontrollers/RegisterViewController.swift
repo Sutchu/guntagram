@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 
 class RegisterViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -15,7 +14,7 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
-    let userDataSource = UserDataSource()
+    let userDataSource = UserRegisterManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,15 +43,7 @@ class RegisterViewController: UIViewController {
     }
 }
 
-extension RegisterViewController: UserDataSourceProtocol {
-    func loginFailed(error: Error) {
-        
-    }
-    
-    func userLoggedIn() {
-        
-    }
-    
+extension RegisterViewController: UserRegisterManagerProtocol {
     
     func userIsRegistered() {
         self.performSegue(withIdentifier: "Register", sender: self)

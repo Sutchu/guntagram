@@ -9,10 +9,10 @@ import Foundation
 import Firebase
 import UIKit
 
-class UserDataSource {
+class UserRegisterManager {
     
     private let db = Firestore.firestore()
-    var delegate: UserDataSourceProtocol?
+    var delegate: UserRegisterManagerProtocol?
     
     func createNewUser(email: String, userName: String, password: String)  {
         checkUsernameUniqueness(userName: userName) { returnVal in
@@ -67,15 +67,4 @@ class UserDataSource {
         }
     }
     
-    func logInUser(email: String, password: String) {
-        
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            if let e = error {
-                self?.delegate?.loginFailed(error: e)
-            } else {
-                self?.delegate?.userLoggedIn()
-            }
-          // ...
-        }
-    }
 }

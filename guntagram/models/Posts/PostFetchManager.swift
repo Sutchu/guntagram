@@ -10,12 +10,12 @@ import Firebase
 import FirebaseStorage
 import UIKit
 
-class PostDataSource {
+class PostFetchManager {
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
 
     var postArray: [Post] = []
-    var delegate: PostDataSourceProtocol?
+    var delegate: PostFetchManagerProtocol?
     
     func fetchAllPosts() {
         let postsRef = db.collection("posts").order(by: "upload_time").getDocuments() { (querySnapshot, err) in
@@ -55,4 +55,5 @@ class PostDataSource {
     func getPostCount() -> Int {
         return postArray.count
     }
+    
 }

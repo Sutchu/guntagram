@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Firebase
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    let userDataSource = UserDataSource()
+    let userDataSource = UserLoginManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +33,11 @@ class LoginViewController: UIViewController {
         if let password = passwordTextField.text, let email = emailTextField.text {
             self.userDataSource.logInUser(email: email, password: password)
         }
-        
     }
     
 }
 
-extension LoginViewController: UserDataSourceProtocol {
-    
-    func registerFailed(error: Error) {}
-    
-    func userIsRegistered() {}
+extension LoginViewController: UserLoginManagerProtocol {
     
     func loginFailed(error: Error) {
         print(error)
