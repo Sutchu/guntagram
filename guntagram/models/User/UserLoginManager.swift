@@ -25,12 +25,11 @@ class UserLoginManager {
                     let userReference = self?.db.collection("users").document(authResult.user.uid)
                     FireStoreConstants.shared.userReference = userReference
                     userReference!.getDocument(completion: { querySnapshot,_ in
-                        FireStoreConstants.shared.userName = querySnapshot!.get("user_name") as! String
+                        FireStoreConstants.shared.userName = querySnapshot!.get("user_name") as? String
                     })
                     self?.delegate?.userLoggedIn()
                 }
             }
-          // ...
         }
     }
 }

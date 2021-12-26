@@ -6,12 +6,15 @@ target 'guntagram' do
   use_frameworks!
 
   # Pods for guntagram
+  inhibit_all_warnings!
 
   # Add the pods for any other Firebase products you want to use in your app
   # For example, to use Firebase Authentication and Cloud Firestore
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
-  pod 'Firebase/Core'
+  
+  # Pod for like button animation
+  pod 'FaveButton'
 
 end

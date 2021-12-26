@@ -38,7 +38,7 @@ extension ProfileViewController: UserManagerProtocol {
     }
     
     func errorOccured(error: Error?) {
-        print(error)
+        print(error ?? "An error occured")
     }
     
     
