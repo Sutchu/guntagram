@@ -9,12 +9,12 @@ import Foundation
 import Firebase
 
 class Comment {
-    let owner: DocumentReference
+    let ownerReference: DocumentReference
     let ownerUsername: String
     let comment: String
     
     init(owner: DocumentReference, ownerUsername: String, comment: String) {
-        self.owner = owner
+        self.ownerReference = owner
         self.ownerUsername = ownerUsername
         self.comment = comment
     }

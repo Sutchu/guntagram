@@ -12,7 +12,8 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentsTable: UITableView!
     var selectedPost : Post?
-    var commentDataSource = CommentDataSource()
+    let commentDataSource = CommentDataSource()
+    let commentUploadManager = CommentUploadManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,12 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: Any) {
+        if let commentText = self.commentTextField.text, let selectedPost = self.selectedPost {
+            if(!commentText.isEqual("")) {
+                commentUploadManager.uploadComment(comment: commentText, postReference: selectedPost.postReference)
+                commentTextField.text = ""
+            }
+        }
     }
     
     /*
@@ -52,4 +59,11 @@ extension CommentsViewController: UITableViewDataSource {
     }
     
     
+}
+
+extension CommentsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            self.view.endEditing(true)
+            return false
+        }
 }

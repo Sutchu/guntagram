@@ -17,9 +17,9 @@ class Post {
     var likingUsers: [DocumentReference]
     var isPostLiked: Bool
     let ownerUsername: String
-    let comments: [(DocumentReference, String, String)]
+    let comments: [Dictionary<String, Any>]
     
-    init(uiImage : UIImage, likeCount: Int, owner: DocumentReference, postReference: DocumentReference, likingUsers: [DocumentReference], isPostLiked: Bool, ownerUsername: String, comments: [(DocumentReference, String, String)]) {
+    init(uiImage : UIImage, likeCount: Int, owner: DocumentReference, postReference: DocumentReference, likingUsers: [DocumentReference], isPostLiked: Bool, ownerUsername: String, comments: [Dictionary<String, Any>]) {
         self.likingUsers = likingUsers
         self.postReference = postReference
         self.isPostLiked = isPostLiked

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class CommentDataSource {
     
@@ -14,7 +15,7 @@ class CommentDataSource {
     func getComments(post: Post) {
         let rawComments = post.comments
         for rawComment in rawComments {
-            comments.append(Comment(owner: rawComment.0, ownerUsername: rawComment.1, comment: rawComment.2))
+            comments.append(Comment(owner: rawComment["owner"] as! DocumentReference , ownerUsername: rawComment["owner_username"] as! String, comment: rawComment["comment"] as! String ))
         }
     }
     
