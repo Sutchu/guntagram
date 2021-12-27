@@ -38,6 +38,11 @@
 		0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */; };
 		0FCF0CAD27777DB9009F1C0A /* FireStoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */; };
 		1F8739012D80AE11B05B1208 /* Pods_guntagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E2C2D43E66E5CA8343C014 /* Pods_guntagram.framework */; };
+		49517EF9277A69BE00678059 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517EF8277A69BE00678059 /* Comment.swift */; };
+		49517EFB277A6A4D00678059 /* CommentDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49517EFA277A6A4D00678059 /* CommentDataSource.swift */; };
+		49ED42FB277A596500E15F98 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED42FA277A596500E15F98 /* CommentsViewController.swift */; };
+		49ED42FD277A599900E15F98 /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED42FC277A599900E15F98 /* CommentsTableViewCell.swift */; };
+		49ED4302277A5EB100E15F98 /* PostCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ED4301277A5EB100E15F98 /* PostCellDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +80,11 @@
 		0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUpdateManagerProtocol.swift; sourceTree = "<group>"; };
 		0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreConstants.swift; sourceTree = "<group>"; };
 		19924A33848EC223A2ED11A2 /* Pods-guntagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.debug.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.debug.xcconfig"; sourceTree = "<group>"; };
+		49517EF8277A69BE00678059 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		49517EFA277A6A4D00678059 /* CommentDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataSource.swift; sourceTree = "<group>"; };
+		49ED42FA277A596500E15F98 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		49ED42FC277A599900E15F98 /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		49ED4301277A5EB100E15F98 /* PostCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellDelegate.swift; sourceTree = "<group>"; };
 		63926B63A8D56CD8B8A7C187 /* Pods-guntagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-guntagram.release.xcconfig"; path = "Target Support Files/Pods-guntagram/Pods-guntagram.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +148,7 @@
 				0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */,
 				0F93FCE827713841004779D0 /* HomeViewController.swift */,
 				0F81A6242776996A00920315 /* ProfileViewController.swift */,
+				49ED42FA277A596500E15F98 /* CommentsViewController.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -145,6 +156,7 @@
 		0F079FF4276BCB6200CD0F50 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				49517EF7277A69AD00678059 /* Comments */,
 				0F81A60C277658B300920315 /* User */,
 				0F81A60B277658A400920315 /* Posts */,
 			);
@@ -197,6 +209,7 @@
 				0F93FCF027714E06004779D0 /* PostFetchManagerProtocol.swift */,
 				0F81A61627767EE000920315 /* PostUploadManagerProtocol.swift */,
 				0FCF0CA7277772F7009F1C0A /* PostUpdateManagerProtocol.swift */,
+				49ED4301277A5EB100E15F98 /* PostCellDelegate.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -205,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				0F93FCED277145C8004779D0 /* PostTableViewCell.swift */,
+				49ED42FC277A599900E15F98 /* CommentsTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -224,6 +238,15 @@
 				0FCF0CAC27777DB9009F1C0A /* FireStoreConstants.swift */,
 			);
 			path = Defaults;
+			sourceTree = "<group>";
+		};
+		49517EF7277A69AD00678059 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				49517EF8277A69BE00678059 /* Comment.swift */,
+				49517EFA277A6A4D00678059 /* CommentDataSource.swift */,
+			);
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		60D4CDA58D3930B333CE25DE /* Frameworks */ = {
@@ -362,6 +385,7 @@
 				0F81A61D277681D000920315 /* UserLoginManager.swift in Sources */,
 				0F81A60E277658F300920315 /* User.swift in Sources */,
 				0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */,
+				49ED4302277A5EB100E15F98 /* PostCellDelegate.swift in Sources */,
 				0F81A61927767F0000920315 /* PostUploadManager.swift in Sources */,
 				0F93FCEB2771407C004779D0 /* PostFetchManager.swift in Sources */,
 				0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */,
@@ -370,18 +394,22 @@
 				0FCF0CA627776BF5009F1C0A /* PostUpdateManager.swift in Sources */,
 				0F93FCF127714E06004779D0 /* PostFetchManagerProtocol.swift in Sources */,
 				0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */,
+				49ED42FD277A599900E15F98 /* CommentsTableViewCell.swift in Sources */,
 				0F81A6232776945C00920315 /* UserManagerProtocol.swift in Sources */,
 				0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */,
 				0F81A61F2776839100920315 /* UserManager.swift in Sources */,
 				0F81A61B2776819900920315 /* UserLoginManagerProtocol.swift in Sources */,
 				0F079FD3276BBA9D00CD0F50 /* AppDelegate.swift in Sources */,
 				0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */,
+				49ED42FB277A596500E15F98 /* CommentsViewController.swift in Sources */,
 				0F81A613277662B500920315 /* UserError.swift in Sources */,
 				0F81A6252776996A00920315 /* ProfileViewController.swift in Sources */,
 				0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */,
 				0F93FCE927713841004779D0 /* HomeViewController.swift in Sources */,
 				0F81A61727767EE000920315 /* PostUploadManagerProtocol.swift in Sources */,
+				49517EF9277A69BE00678059 /* Comment.swift in Sources */,
 				0F079FEF276BC50D00CD0F50 /* LoginViewController.swift in Sources */,
+				49517EFB277A6A4D00678059 /* CommentDataSource.swift in Sources */,
 				0F81A610277659E700920315 /* UserRegisterManager.swift in Sources */,
 				0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */,
 				0F079FD5276BBA9D00CD0F50 /* SceneDelegate.swift in Sources */,

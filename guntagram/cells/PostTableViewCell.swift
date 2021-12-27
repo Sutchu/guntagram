@@ -15,7 +15,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
-    
+    var delegate: PostCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +25,7 @@ class PostTableViewCell: UITableViewCell {
     
     func updateFields() {
         if let postObject = self.postObject {
-            self.likeLabel.text = "\(postObject.likeCount) likes, \(postObject.owner)"
+            self.likeLabel.text = "\(postObject.likeCount) likes"
             self.postImage.image = postObject.uiImage
             self.ownerUsernameLabel.text = postObject.ownerUsername
             if postObject.isPostLiked {
@@ -46,5 +46,7 @@ class PostTableViewCell: UITableViewCell {
             callback()
         }
     }
-    
+    @IBAction func commentButtonPressed(_ sender: Any) {
+        delegate?.commentsButtonPressed(cell: self)
+    }
 }

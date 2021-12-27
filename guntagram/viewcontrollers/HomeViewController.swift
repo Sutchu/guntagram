@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     let fetchManager = PostFetchManager()
     let updateManager = PostUpdateManager()
+    var selectedPost: Post? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -32,6 +34,13 @@ class HomeViewController: UIViewController {
         fetchManager.fetchNewPosts()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "comments") {
+            let destination = segue.destination as! CommentsViewController
+            destination.selectedPost = self.selectedPost
+            self.selectedPost = nil
+        }
+    }
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -43,6 +52,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "post", for: indexPath) as! PostTableViewCell
         cell.postObject = fetchManager.getPostAtIndex(index: indexPath.row)
+        cell.delegate = self
         cell.updateFields()
         
         cell.likePressedCallback = {
@@ -81,4 +91,15 @@ extension HomeViewController: PostUpdateManagerProtocol {
     func updateFailed(error: Error) {
         print(error)
     }
+}
+
+extension HomeViewController: PostCellDelegate {
+    func commentsButtonPressed(cell: PostTableViewCell) {
+        if let index = self.postsTableView.indexPath(for: cell)?.row, let post = self.fetchManager.getPostAtIndex(index: index) {
+            self.selectedPost = post
+            performSegue(withIdentifier: "comments", sender: self)
+        }
+    }
+    
+    
 }
