@@ -15,7 +15,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
-    
+    var delegate: PostCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,5 +48,7 @@ class PostTableViewCell: UITableViewCell {
             callback()
         }
     }
-    
+    @IBAction func commentButtonPressed(_ sender: Any) {
+        delegate?.commentsButtonPressed(cell: self)
+    }
 }

@@ -35,6 +35,7 @@ class PostFetchManager {
                     let ownerReference = document.get("owner") as! DocumentReference
                     let likingUsers = document.get("liking_users") as! [DocumentReference]
                     let ownerUserName = document.get("owner_username") as! String
+                    let comments = document.get("comments") as! [Dictionary<String, Any>]
                     //let uploadTime = document.value(forKey: "upload_time")
                     // Create a reference to the file you want to download
                     let imageRef = self.storage.child(imagePath)
@@ -47,7 +48,7 @@ class PostFetchManager {
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUsers.contains(FireStoreConstants.shared.userReference!)
-                                self.postArray[index] = Post(uiImage: image, likeCount: likeCount, owner: ownerReference, postReference: document.reference, likingUsers: likingUsers, isPostLiked: isPostLiked, ownerUsername: ownerUserName)
+                                self.postArray[index] = Post(uiImage: image, likeCount: likeCount, owner: ownerReference, postReference: document.reference, likingUsers: likingUsers, isPostLiked: isPostLiked, ownerUsername: ownerUserName, comments: comments)
                                 self.delegate?.postLoaded()
                             }
                         }
