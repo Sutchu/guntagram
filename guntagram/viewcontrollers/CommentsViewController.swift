@@ -12,13 +12,15 @@ class CommentsViewController: UIViewController {
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentsTable: UITableView!
     var selectedPost : Post?
-    let commentDataSource = CommentDataSource()
+    let commentFetchManager = CommentFetchManager()
     let commentUploadManager = CommentUploadManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let selectedPost = selectedPost {
-            commentDataSource.getComments(post: selectedPost)
+            commentUploadManager.delegate = self
+            commentFetchManager.delegate = self
+            commentFetchManager.getComments(post: selectedPost)
         }
         // Do any additional setup after loading the view.
     }
@@ -46,14 +48,14 @@ class CommentsViewController: UIViewController {
 
 extension CommentsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        commentDataSource.getNumberOfComment()
+        commentFetchManager.getNumberOfComment()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as! CommentsTableViewCell
-        if let comment = commentDataSource.getCommentAtIndex(index: indexPath.row) {
+        if let comment = commentFetchManager.getCommentAtIndex(index: indexPath.row) {
             cell.commentLabel.text = comment.comment
-            cell.commentOwnerLabel.text = comment.ownerUsername
+            cell.commentOwnerLabel.text = "\(comment.ownerUsername) : "
         }
         return cell
     }
@@ -66,4 +68,29 @@ extension CommentsViewController: UITextFieldDelegate {
             self.view.endEditing(true)
             return false
         }
+}
+
+extension CommentsViewController: CommentUploadManagerDelegate {
+    func commentUploaded() {
+        if let selectedPost = self.selectedPost {
+            self.commentFetchManager.fetchComments(post: selectedPost)
+        }
+    }
+    
+    func uploadFailed(error: Error) {
+        print(error)
+    }
+    
+}
+
+extension CommentsViewController: CommentFetchManagerDelegate {
+    func fetchingFailed(error: Error) {
+        print(error)
+    }
+    
+    func fetchCompleted() {
+        self.commentsTable.reloadData()
+    }
+    
+    
 }
