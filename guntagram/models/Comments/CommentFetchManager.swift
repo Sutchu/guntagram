@@ -14,13 +14,6 @@ class CommentFetchManager {
     private let db = Firestore.firestore()
     var delegate: CommentFetchManagerDelegate?
     
-    func getComments(post: Post) {
-        let rawComments = post.comments
-        for rawComment in rawComments {
-            comments.append(Comment(owner: rawComment["owner"] as! DocumentReference , ownerUsername: rawComment["owner_username"] as! String, comment: rawComment["comment"] as! String ))
-        }
-    }
-    
     func fetchComments(post: Post) {
         let postReference = post.postReference
         postReference.getDocument { (document, error) in

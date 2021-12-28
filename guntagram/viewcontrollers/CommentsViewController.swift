@@ -20,7 +20,7 @@ class CommentsViewController: UIViewController {
         if let selectedPost = selectedPost {
             commentUploadManager.delegate = self
             commentFetchManager.delegate = self
-            commentFetchManager.getComments(post: selectedPost)
+            commentFetchManager.fetchComments(post: selectedPost)
         }
         // Do any additional setup after loading the view.
     }
