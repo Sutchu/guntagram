@@ -14,11 +14,13 @@ class HomeViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     let fetchManager = PostFetchManager()
     let updateManager = PostUpdateManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         postsTableView.addSubview(refreshControl) // not required when using UITableViewController
+        
         self.tabBarController?.navigationItem.hidesBackButton = true
         fetchManager.delegate = self
         updateManager.delegate = self
@@ -63,7 +65,7 @@ extension HomeViewController: UITableViewDelegate {
             let myViewWidth = self.view.frame.size.width
             let ratio = myViewWidth/myImageWidth
             let scaledHeight = myImageHeight * ratio
-            return scaledHeight + 95
+            return scaledHeight + 140
         }
         return 0
     }
@@ -74,7 +76,6 @@ extension HomeViewController: PostFetchManagerProtocol {
         self.postsTableView.reloadData()
         refreshControl.endRefreshing()
     }
-    
 }
 
 extension HomeViewController: PostUpdateManagerProtocol {
