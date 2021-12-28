@@ -48,7 +48,9 @@ class PostTableViewCell: UITableViewCell {
             callback()
         }
     }
+    
     @IBAction func commentButtonPressed(_ sender: Any) {
         delegate?.commentsButtonPressed(cell: self)
     }
+    
 }

@@ -348,7 +348,6 @@
                                                     </constraints>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
-
                                                     <connections>
                                                         <action selector="likeButtonPressed:" destination="dLW-7T-57F" eventType="touchUpInside" id="mQr-en-Ky5"/>
                                                     </connections>
@@ -369,6 +368,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" image="message" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="commentButtonPressed:" destination="dLW-7T-57F" eventType="touchUpInside" id="8Jy-SY-U7p"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
                                                     <rect key="frame" x="10" y="542" width="47.5" height="20"/>
@@ -403,14 +405,12 @@
                                                 <constraint firstItem="5yK-JV-FjB" firstAttribute="top" secondItem="mLw-fK-cpQ" secondAttribute="bottom" constant="10" id="bQT-0b-SXN"/>
                                                 <constraint firstItem="PEN-p9-wQY" firstAttribute="top" secondItem="oAN-Vm-fwC" secondAttribute="bottom" id="da9-BX-QXZ"/>
                                                 <constraint firstItem="oAN-Vm-fwC" firstAttribute="leading" secondItem="aKw-bq-zUX" secondAttribute="leading" id="iOI-AM-m5b"/>
-
                                                 <constraint firstItem="5yK-JV-FjB" firstAttribute="centerX" secondItem="aKw-bq-zUX" secondAttribute="centerX" id="qT5-cF-by3"/>
                                                 <constraint firstItem="W94-wq-wRU" firstAttribute="centerY" secondItem="mLw-fK-cpQ" secondAttribute="centerY" id="qaO-eg-GGU"/>
                                                 <constraint firstAttribute="trailing" secondItem="5yK-JV-FjB" secondAttribute="trailing" id="qd2-oj-uvf"/>
                                                 <constraint firstItem="mLw-fK-cpQ" firstAttribute="leading" secondItem="aKw-bq-zUX" secondAttribute="leading" constant="10" id="r9w-Hr-lku"/>
                                                 <constraint firstItem="7hI-lh-mkG" firstAttribute="width" secondItem="oAN-Vm-fwC" secondAttribute="width" id="wp8-Cj-p3j"/>
                                                 <constraint firstItem="W94-wq-wRU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mLw-fK-cpQ" secondAttribute="trailing" constant="8" symbolic="YES" id="ytP-wm-DpS"/>
-
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -447,7 +447,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aNQ-wt-XPp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="vPs-9m-uee" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3369.5652173913045" y="-735.26785714285711"/>
         </scene>
