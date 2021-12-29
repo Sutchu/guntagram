@@ -17,8 +17,8 @@ class PostUploadViewController: UIViewController {
         super.viewDidLoad()
         self.postDataManager.delegate = self
         // Do any additional setup after loading the view.
+        self.resultLabel.font = UIFont.init(name: "Grandista", size: CGFloat(12))
     }
-    
 }
 
 extension PostUploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -30,7 +30,6 @@ extension PostUploadViewController: UIImagePickerControllerDelegate, UINavigatio
             picker.delegate = self
             picker.allowsEditing = true
             present(picker, animated: true)
-            
         }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

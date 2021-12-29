@@ -12,15 +12,15 @@ class PostTableViewCell: UITableViewCell {
     var postObject: Post?
 
     @IBOutlet weak var ownerUsernameLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
+    @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
     var delegate: PostCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.updateFields()
+        self.updateFields()        
     }
     
     func updateFields() {
@@ -29,9 +29,11 @@ class PostTableViewCell: UITableViewCell {
             self.postImage.image = postObject.uiImage
             self.ownerUsernameLabel.text = postObject.ownerUsername
             if postObject.isPostLiked {
-                likeButton.setTitle("Unlike", for: .normal)
+                likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                likeButton.tintColor = UIColor.red
             } else {
-                likeButton.setTitle("Like", for: .normal)
+                likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                likeButton.tintColor = UIColor.white
             }
         }
     }
@@ -46,7 +48,9 @@ class PostTableViewCell: UITableViewCell {
             callback()
         }
     }
+    
     @IBAction func commentButtonPressed(_ sender: Any) {
         delegate?.commentsButtonPressed(cell: self)
     }
+    
 }
