@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseFirestore
 
-struct User {
+struct User: Equatable {
+    
     let userName: String
-    let mail: String
-    var posts: [Post] = []
+    let userReference: DocumentReference
+    
 }

@@ -1,31 +1,28 @@
 //
-//  PostDataSource.swift
+//  ProfileFetchManager.swift
 //  guntagram
 //
-//  Created by Ali Sutcu on 21.12.2021.
+//  Created by Ali Sutcu on 30.12.2021.
 //
 
 import Foundation
 import Firebase
 import FirebaseStorage
-import UIKit
 
-class PostFetchManager {
+class ProfileFetchManager {
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
-    private var lastFetchTimeStamp = 0.0
-    var postArray: [Post?] = []
-    var delegate: PostFetchManagerProtocol?
     
-
-    func fetchNewPosts() {
-        db.collection("posts").whereField("upload_time", isGreaterThanOrEqualTo: self.lastFetchTimeStamp).order(by: "upload_time", descending: true).getDocuments() { (querySnapshot, err) in
+    var posts: [Post?] = []
+    var delegate: ProfileFetchManagerProtocol?
+    
+    func fetchPosts(user: User) {
+        db.collection("posts").whereField("owner", isEqualTo: user.userReference).order(by: "upload_time", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 let documents = querySnapshot!.documents
-                self.lastFetchTimeStamp = NSDate().timeIntervalSince1970
-                self.postArray.insert(contentsOf: [Post?](repeating: nil, count: documents.count), at: 0)
+                self.posts = [Post?](repeating: nil, count: documents.count)
                 if documents.count == 0 {
                     self.delegate?.postLoaded()
                 }
@@ -54,7 +51,7 @@ class PostFetchManager {
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(FireStoreConstants.shared.currentUser!)
-                                self.postArray[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked)
+                                self.posts[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked)
                                 self.delegate?.postLoaded()
                             }
                         }
@@ -64,12 +61,11 @@ class PostFetchManager {
         }
     }
     
-    func getPostAtIndex(index: Int) -> Post? {
-        return postArray[index]
-    }
-    
     func getPostCount() -> Int {
-        return postArray.count
+        return posts.count
     }
     
+    func getPostAt(index: Int) -> Post? {
+        return posts[index]
+    }
 }

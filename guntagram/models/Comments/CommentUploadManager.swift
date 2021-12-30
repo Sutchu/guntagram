@@ -13,7 +13,7 @@ class CommentUploadManager {
     var delegate: CommentUploadManagerDelegate?
     
     func uploadComment(comment: String, postReference: DocumentReference) {
-        postReference.updateData(["comments": FieldValue.arrayUnion([["owner" : FireStoreConstants.shared.userReference, "owner_username" : FireStoreConstants.shared.userName, "comment" : comment]])]) {error in
+        postReference.updateData(["comments": FieldValue.arrayUnion([["owner" : FireStoreConstants.shared.currentUser!.userReference, "owner_username" : FireStoreConstants.shared.currentUser!.userName, "comment" : comment]])]) {error in
             if let error = error {
                 self.delegate?.uploadFailed(error: error)
             }else{

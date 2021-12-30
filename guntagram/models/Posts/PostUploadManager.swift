@@ -70,7 +70,7 @@ class PostUploadManager {
             "owner": userReference,
             "image_path": imagePath,
             "liking_users": [],
-            "owner_username": FireStoreConstants.shared.userName!,
+            "owner_username": FireStoreConstants.shared.currentUser!.userName,
             "comments": []
         ]) { (error) in
             if let e = error {

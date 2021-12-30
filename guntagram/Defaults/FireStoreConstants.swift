@@ -11,8 +11,7 @@ import Firebase
 struct FireStoreConstants {
     
     static var shared = FireStoreConstants()
-    var userReference: DocumentReference?
-    var userName: String?
+    var currentUser: User?
     private init() {}
     
 }

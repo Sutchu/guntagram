@@ -12,21 +12,17 @@ import Firebase
 class Post {
     let uiImage: UIImage
     var likeCount: Int = 0
-    let owner: DocumentReference
+    let owner: User
     let postReference: DocumentReference
-    var likingUsers: [DocumentReference]
+    var likingUsers: [User]
     var isPostLiked: Bool
-    let ownerUsername: String
-    let comments: [Dictionary<String, Any>]
     
-    init(uiImage : UIImage, likeCount: Int, owner: DocumentReference, postReference: DocumentReference, likingUsers: [DocumentReference], isPostLiked: Bool, ownerUsername: String, comments: [Dictionary<String, Any>]) {
+    init(uiImage : UIImage, likeCount: Int, owner: User, postReference: DocumentReference, likingUsers: [User], isPostLiked: Bool) {
         self.likingUsers = likingUsers
         self.postReference = postReference
         self.isPostLiked = isPostLiked
         self.likeCount = likeCount
         self.owner = owner
         self.uiImage = uiImage
-        self.ownerUsername = ownerUsername
-        self.comments = comments
     }
 }

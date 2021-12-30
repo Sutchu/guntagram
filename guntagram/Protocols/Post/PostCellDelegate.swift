@@ -9,4 +9,5 @@ import Foundation
 
 protocol PostCellDelegate {
     func commentsButtonPressed(cell: PostTableViewCell)
+    func profileButtonPressed(cell: PostTableViewCell)
 }

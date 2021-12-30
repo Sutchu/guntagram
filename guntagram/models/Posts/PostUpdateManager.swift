@@ -11,7 +11,7 @@ import Firebase
 class PostUpdateManager {
     private let db = Firestore.firestore()
     var delegate: PostUpdateManagerProtocol?
-    let userReference = FireStoreConstants.shared.userReference!
+    let user = FireStoreConstants.shared.currentUser!
     
     func changeLikeCount(post: Post) {
         let postReference = post.postReference
@@ -30,14 +30,14 @@ class PostUpdateManager {
     
     func modifyPostObject(post: Post, isLiked: Bool){
         if isLiked {
-            if let index = post.likingUsers.firstIndex(of: userReference) {
+            if let index = post.likingUsers.firstIndex(of: user) {
                 post.likeCount -= 1
                 post.likingUsers.remove(at: index)
                 post.isPostLiked = false
             }
         } else {
             post.likeCount += 1
-            post.likingUsers.append(userReference)
+            post.likingUsers.append(user)
             post.isPostLiked = true
         }
     }
@@ -64,7 +64,7 @@ class PostUpdateManager {
 
     
     func addToLikingUsers(postReference: DocumentReference,completion: @escaping () -> Void) {
-        postReference.updateData(["liking_users": FieldValue.arrayUnion([userReference])]) { error in
+        postReference.updateData(["liking_users": FieldValue.arrayUnion([["user_name": FireStoreConstants.shared.currentUser!.userName, "user_reference": FireStoreConstants.shared.currentUser!.userReference]])]) { error in
             if let error = error {
                 self.delegate?.updateFailed(error: error)
             } else {
@@ -74,7 +74,7 @@ class PostUpdateManager {
     }
     
     func removeFromLikingUsers(postReference: DocumentReference,completion: @escaping () -> Void) {
-        postReference.updateData(["liking_users": FieldValue.arrayRemove([userReference])]) { error in
+        postReference.updateData(["liking_users": FieldValue.arrayRemove([["user_name": FireStoreConstants.shared.currentUser!.userName, "user_reference": FireStoreConstants.shared.currentUser!.userReference]])]) { error in
             if let error = error {
                 self.delegate?.updateFailed(error: error)
             } else {

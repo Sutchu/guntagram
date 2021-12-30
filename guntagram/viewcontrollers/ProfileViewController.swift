@@ -8,24 +8,29 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
+    @IBOutlet weak var postCollectionView: UICollectionView!
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    var selectedUser: User? = FireStoreConstants.shared.currentUser
     let userManager = UserManager()
+    let profileFetchManager = ProfileFetchManager()
+    var isCallerSegue = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userManager.delegate = self
+        self.profileFetchManager.delegate = self
+        if (isCallerSegue) {
+            self.logoutButton.setTitle("", for: .normal)
+        }
         // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        if let selectedUser = selectedUser {
+            self.profileFetchManager.fetchPosts(user: selectedUser)
+        }
     }
-    */
 
     @IBAction func logoutButtonPressed(_ sender: Any) {
         self.userManager.logoutUser()
@@ -35,6 +40,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UserManagerProtocol {
     func userDidLogout() {
         self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     func errorOccured(error: Error?) {
@@ -42,4 +48,37 @@ extension ProfileViewController: UserManagerProtocol {
     }
     
     
+}
+
+extension ProfileViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        profileFetchManager.getPostCount()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "profilePost", for: indexPath) as! ProfileCollectionViewCell
+        if let post = profileFetchManager.getPostAt(index: indexPath.row) {
+            cell.setImageFromPost(post: post)
+        }
+        return cell
+    }
+}
+
+extension ProfileViewController: UICollectionViewDelegate {
+    
+}
+
+extension ProfileViewController: ProfileFetchManagerProtocol {
+    func postLoaded() {
+        print("salami")
+        self.postCollectionView.reloadData()
+    }
+    
+    
+}
+
+extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.size.width/3-1, height: self.view.frame.size.width/3-1)
+    }
 }

@@ -22,12 +22,13 @@ class UserLoginManager {
             } else {
                 
                 if let authResult = authResult {
-                    let userReference = self?.db.collection("users").document(authResult.user.uid)
-                    FireStoreConstants.shared.userReference = userReference
-                    userReference!.getDocument(completion: { querySnapshot,_ in
-                        FireStoreConstants.shared.userName = querySnapshot!.get("user_name") as? String
-                    })
-                    self?.delegate?.userLoggedIn()
+                    self?.db.collection("users").document(authResult.user.uid).getDocument() { querySnapshot, err in
+                        if let querySnapshot = querySnapshot {
+                            let userName = querySnapshot.get("user_name") as! String
+                            FireStoreConstants.shared.currentUser = User(userName: userName, userReference: querySnapshot.reference)
+                            self?.delegate?.userLoggedIn()
+                        }
+                    }
                 }
             }
         }

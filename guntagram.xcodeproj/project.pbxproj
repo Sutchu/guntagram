@@ -19,6 +19,9 @@
 		0F079FF1276BC51700CD0F50 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */; };
 		0F079FF3276BCA0A00CD0F50 /* PostUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */; };
 		0F079FF6276BCB7500CD0F50 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FF5276BCB7500CD0F50 /* Post.swift */; };
+		0F2DAC87277E338800507162 /* ProfileFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC86277E338800507162 /* ProfileFetchManager.swift */; };
+		0F2DAC89277E5B6300507162 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC88277E5B6300507162 /* ProfileCollectionViewCell.swift */; };
+		0F2DAC8C277E602900507162 /* ProfileFetchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */; };
 		0F81A60E277658F300920315 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60D277658F300920315 /* User.swift */; };
 		0F81A610277659E700920315 /* UserRegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60F277659E700920315 /* UserRegisterManager.swift */; };
 		0F81A613277662B500920315 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A612277662B500920315 /* UserError.swift */; };
@@ -64,6 +67,9 @@
 		0F079FF0276BC51700CD0F50 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0F079FF2276BCA0A00CD0F50 /* PostUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUploadViewController.swift; sourceTree = "<group>"; };
 		0F079FF5276BCB7500CD0F50 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0F2DAC86277E338800507162 /* ProfileFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFetchManager.swift; sourceTree = "<group>"; };
+		0F2DAC88277E5B6300507162 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFetchManagerProtocol.swift; sourceTree = "<group>"; };
 		0F81A60D277658F300920315 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F81A60F277659E700920315 /* UserRegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterManager.swift; sourceTree = "<group>"; };
 		0F81A612277662B500920315 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
@@ -162,11 +168,28 @@
 		0F079FF4276BCB6200CD0F50 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				0F2DAC82277E331E00507162 /* Profile */,
 				49517EF7277A69AD00678059 /* Comments */,
 				0F81A60C277658B300920315 /* User */,
 				0F81A60B277658A400920315 /* Posts */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		0F2DAC82277E331E00507162 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F2DAC86277E338800507162 /* ProfileFetchManager.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		0F2DAC8A277E601C00507162 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		0F81A60B277658A400920315 /* Posts */ = {
@@ -225,6 +248,7 @@
 			children = (
 				0F93FCED277145C8004779D0 /* PostTableViewCell.swift */,
 				49ED42FC277A599900E15F98 /* CommentsTableViewCell.swift */,
+				0F2DAC88277E5B6300507162 /* ProfileCollectionViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -232,6 +256,7 @@
 		0F93FCEF27714DEB004779D0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				0F2DAC8A277E601C00507162 /* Profile */,
 				49517F00277A805A00678059 /* Comments */,
 				0F81A6212776840F00920315 /* Post */,
 				0F81A620277683FA00920315 /* User */,
@@ -402,18 +427,21 @@
 				0F81A61D277681D000920315 /* UserLoginManager.swift in Sources */,
 				0F81A60E277658F300920315 /* User.swift in Sources */,
 				0F93FCEE277145C8004779D0 /* PostTableViewCell.swift in Sources */,
+				0F2DAC87277E338800507162 /* ProfileFetchManager.swift in Sources */,
 				49ED4302277A5EB100E15F98 /* PostCellDelegate.swift in Sources */,
 				0F81A61927767F0000920315 /* PostUploadManager.swift in Sources */,
 				0F93FCEB2771407C004779D0 /* PostFetchManager.swift in Sources */,
 				0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */,
 				0F81A61527766B8100920315 /* UserRegisterManagerProtocol.swift in Sources */,
 				49517EFD277A7C3300678059 /* CommentUploadManager.swift in Sources */,
+				0F2DAC89277E5B6300507162 /* ProfileCollectionViewCell.swift in Sources */,
 				49D3D0A9277A8C3A00F5AEDE /* CommentUploadManagerDelegate.swift in Sources */,
 				0FCF0CAD27777DB9009F1C0A /* FireStoreConstants.swift in Sources */,
 				0FCF0CA627776BF5009F1C0A /* PostUpdateManager.swift in Sources */,
 				0F93FCF127714E06004779D0 /* PostFetchManagerProtocol.swift in Sources */,
 				0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */,
 				49ED42FD277A599900E15F98 /* CommentsTableViewCell.swift in Sources */,
+				0F2DAC8C277E602900507162 /* ProfileFetchManagerProtocol.swift in Sources */,
 				0F81A6232776945C00920315 /* UserManagerProtocol.swift in Sources */,
 				0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */,
 				0F81A61F2776839100920315 /* UserManager.swift in Sources */,
@@ -582,9 +610,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3X5SGMJ77R;
+				DEVELOPMENT_TEAM = RX9UM2NY6T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = guntagram/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "PLIS giVE AKSES";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -595,7 +624,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alisutcu.guntagram.guntagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alisutcu1.guntagram.guntagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -611,9 +640,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3X5SGMJ77R;
+				DEVELOPMENT_TEAM = RX9UM2NY6T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = guntagram/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "PLIS giVE AKSES";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -624,7 +654,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alisutcu.guntagram.guntagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alisutcu1.guntagram.guntagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     let updateManager = PostUpdateManager()
 
     var selectedPost: Post? = nil
+    var selectedProfile: User? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,17 @@ class HomeViewController: UIViewController {
         postsTableView.addSubview(refreshControl) // not required when using UITableViewController
         
         self.tabBarController?.navigationItem.hidesBackButton = true
+        
+
         fetchManager.delegate = self
         updateManager.delegate = self
         fetchManager.fetchNewPosts()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -41,6 +48,12 @@ class HomeViewController: UIViewController {
             let destination = segue.destination as! CommentsViewController
             destination.selectedPost = self.selectedPost
             self.selectedPost = nil
+        } else if (segue.identifier == "profile") {
+            let destination = segue.destination as! ProfileViewController
+            destination.selectedUser = self.selectedProfile
+            destination.isCallerSegue = true
+            self.selectedProfile = nil
+            self.navigationController?.isNavigationBarHidden = false
         }
     }
 }
@@ -62,6 +75,7 @@ extension HomeViewController: UITableViewDataSource {
             cell.updateFields()
             // TODO: decrease like count if there is an error
         }
+
         return cell
     }
 }
@@ -95,6 +109,13 @@ extension HomeViewController: PostUpdateManagerProtocol {
 }
 
 extension HomeViewController: PostCellDelegate {
+    func profileButtonPressed(cell: PostTableViewCell) {
+        if let index = self.postsTableView.indexPath(for: cell)?.row, let post = self.fetchManager.getPostAtIndex(index: index) {
+            self.selectedProfile = post.owner
+            performSegue(withIdentifier: "profile", sender: self)
+        }
+    }
+    
     func commentsButtonPressed(cell: PostTableViewCell) {
         if let index = self.postsTableView.indexPath(for: cell)?.row, let post = self.fetchManager.getPostAtIndex(index: index) {
             self.selectedPost = post

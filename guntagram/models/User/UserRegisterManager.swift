@@ -43,8 +43,7 @@ class UserRegisterManager {
                     print(error)
                     self.delegate?.registerFailed(error: error)
                 } else {
-                    FireStoreConstants.shared.userReference = userReference
-                    FireStoreConstants.shared.userName = userName
+                    FireStoreConstants.shared.currentUser = User(userName: userName, userReference: userReference)
                     self.delegate?.userIsRegistered()
                 }
             }
