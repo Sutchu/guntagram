@@ -75,9 +75,7 @@ class PostUploadManager {
         ]) { (error) in
             if let e = error {
                 print(e)
-            } else {
-                print("user created suksesful")
-            }
+            } 
         }
     }
     
