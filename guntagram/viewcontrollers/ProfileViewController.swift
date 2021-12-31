@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     var selectedUser: User? = FireStoreConstants.shared.currentUser
     let userManager = UserManager()
@@ -21,6 +22,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         self.userManager.delegate = self
         self.profileFetchManager.delegate = self
+        self.usernameLabel.text = self.selectedUser?.userName
         if (isCallerSegue) {
             self.logoutButton.setTitle("", for: .normal)
         }

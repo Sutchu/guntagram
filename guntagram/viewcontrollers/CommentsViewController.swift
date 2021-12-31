@@ -22,6 +22,7 @@ class CommentsViewController: UIViewController {
             commentFetchManager.delegate = self
             commentFetchManager.fetchComments(post: selectedPost)
         }
+        self.navigationController?.isNavigationBarHidden = false
         // Do any additional setup after loading the view.
     }
     
