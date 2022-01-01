@@ -46,6 +46,7 @@ extension LoginViewController: UserLoginManagerProtocol {
     }
     
     func userLoggedIn() {
+        self.navigationController?.navigationBar.isHidden = true
         self.performSegue(withIdentifier: "Login", sender: self)
     }
     

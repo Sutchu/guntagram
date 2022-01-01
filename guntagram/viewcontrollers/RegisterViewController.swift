@@ -49,6 +49,7 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController: UserRegisterManagerProtocol {
     
     func userIsRegistered() {
+        self.navigationController?.navigationBar.isHidden = true
         self.performSegue(withIdentifier: "Register", sender: self)
     }
     

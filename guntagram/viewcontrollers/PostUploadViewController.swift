@@ -11,6 +11,7 @@ import FirebaseStorage
 
 class PostUploadViewController: UIViewController {
     private let postDataManager = PostUploadManager()
+    private let picker = UIImagePickerController()
     
     @IBOutlet weak var resultLabel: UILabel!
     
@@ -18,6 +19,10 @@ class PostUploadViewController: UIViewController {
         super.viewDidLoad()
         self.postDataManager.delegate = self
         // Do any additional setup after loading the view.
+
+        self.picker.sourceType = .photoLibrary
+        self.picker.delegate = self
+        self.picker.allowsEditing = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,10 +31,6 @@ class PostUploadViewController: UIViewController {
     }
     
     func openPicker() {
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.allowsEditing = true
         present(picker, animated: true)
     }
 }
@@ -52,7 +53,6 @@ extension PostUploadViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension PostUploadViewController: PostUploadManagerProtocol {
@@ -64,5 +64,4 @@ extension PostUploadViewController: PostUploadManagerProtocol {
         self.resultLabel.text = "Upload is successful"
         print("post is uploaded")
     }
-    
 }

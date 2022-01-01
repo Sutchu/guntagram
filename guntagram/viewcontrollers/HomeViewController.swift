@@ -23,19 +23,17 @@ class HomeViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         postsTableView.addSubview(refreshControl) // not required when using UITableViewController
-        
-        self.tabBarController?.navigationItem.hidesBackButton = true
-        
 
         fetchManager.delegate = self
         updateManager.delegate = self
-        fetchManager.fetchNewPosts()
-        
         // Do any additional setup after loading the view.
+        
+        fetchManager.fetchNewPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        //self.tabBarController?.navigationItem.hidesBackButton = true
+        //self.navigationController?.isNavigationBarHidden = true
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -51,9 +49,9 @@ class HomeViewController: UIViewController {
         } else if (segue.identifier == "profile") {
             let destination = segue.destination as! ProfileViewController
             destination.selectedUser = self.selectedProfile
-            destination.isCallerSegue = true
+            //destination.isCallerSegue = true
             self.selectedProfile = nil
-            self.navigationController?.isNavigationBarHidden = false
+//            self.navigationController?.isNavigationBarHidden = false
         }
     }
 }
@@ -89,7 +87,7 @@ extension HomeViewController: UITableViewDelegate {
             let myViewWidth = self.view.frame.size.width
             let ratio = myViewWidth/myImageWidth
             let scaledHeight = myImageHeight * ratio
-            return scaledHeight + 140
+            return scaledHeight + 110
         }
         return 0
     }
