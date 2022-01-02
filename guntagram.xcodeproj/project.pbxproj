@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0F079FD3276BBA9D00CD0F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FD2276BBA9D00CD0F50 /* AppDelegate.swift */; };
 		0F079FD5276BBA9D00CD0F50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FD4276BBA9D00CD0F50 /* SceneDelegate.swift */; };
-		0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FD6276BBA9D00CD0F50 /* ViewController.swift */; };
 		0F079FDA276BBA9D00CD0F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F079FD8276BBA9D00CD0F50 /* Main.storyboard */; };
 		0F079FDD276BBA9D00CD0F50 /* guntagram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F079FDB276BBA9D00CD0F50 /* guntagram.xcdatamodeld */; };
 		0F079FDF276BBA9F00CD0F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F079FDE276BBA9F00CD0F50 /* Assets.xcassets */; };
@@ -56,7 +55,6 @@
 		0F079FCF276BBA9D00CD0F50 /* guntagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guntagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F079FD2276BBA9D00CD0F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F079FD4276BBA9D00CD0F50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0F079FD6276BBA9D00CD0F50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0F079FD9276BBA9D00CD0F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F079FDC276BBA9D00CD0F50 /* guntagram.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = guntagram.xcdatamodel; sourceTree = "<group>"; };
 		0F079FDE276BBA9F00CD0F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 				0F079FEB276BBB7000CD0F50 /* GoogleService-Info.plist */,
 				0F079FD2276BBA9D00CD0F50 /* AppDelegate.swift */,
 				0F079FD4276BBA9D00CD0F50 /* SceneDelegate.swift */,
-				0F079FD6276BBA9D00CD0F50 /* ViewController.swift */,
 				0F079FD8276BBA9D00CD0F50 /* Main.storyboard */,
 				0F079FDE276BBA9F00CD0F50 /* Assets.xcassets */,
 				0F079FE0276BBA9F00CD0F50 /* LaunchScreen.storyboard */,
@@ -443,7 +440,6 @@
 				49ED42FD277A599900E15F98 /* CommentsTableViewCell.swift in Sources */,
 				0F2DAC8C277E602900507162 /* ProfileFetchManagerProtocol.swift in Sources */,
 				0F81A6232776945C00920315 /* UserManagerProtocol.swift in Sources */,
-				0F079FD7276BBA9D00CD0F50 /* ViewController.swift in Sources */,
 				0F81A61F2776839100920315 /* UserManager.swift in Sources */,
 				0F81A61B2776819900920315 /* UserLoginManagerProtocol.swift in Sources */,
 				0F079FD3276BBA9D00CD0F50 /* AppDelegate.swift in Sources */,

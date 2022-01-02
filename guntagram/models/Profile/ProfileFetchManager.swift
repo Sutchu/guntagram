@@ -26,6 +26,7 @@ class ProfileFetchManager {
                 if documents.count == 0 {
                     self.delegate?.postLoaded()
                 }
+                let currentUser = FireStoreConstants.shared.currentUser!
                 for (index, document) in documents.enumerated() {
                     let likeCount = document.get("like_count") as! Int
                     let imagePath = document.get("image_path") as! String
@@ -47,10 +48,9 @@ class ProfileFetchManager {
                     imageRef.getData(maxSize: 1 * 10024 * 10024) { data, error in
                         if let error = error {
                             print("Error occured when getting image with url from storage \(error)")
-                            //self.delegate?.postLoaded()
                         } else {
                             if let image = UIImage(data: data!) {
-                                let isPostLiked = likingUserArray.contains(FireStoreConstants.shared.currentUser!)
+                                let isPostLiked = likingUserArray.contains(currentUser)
                                 self.posts[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked)
                                 self.delegate?.postLoaded()
                             }

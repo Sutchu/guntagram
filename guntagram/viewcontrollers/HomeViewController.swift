@@ -49,9 +49,8 @@ class HomeViewController: UIViewController {
         } else if (segue.identifier == "profile") {
             let destination = segue.destination as! ProfileViewController
             destination.selectedUser = self.selectedProfile
-            //destination.isCallerSegue = true
+            destination.isCallerSegue = true
             self.selectedProfile = nil
-//            self.navigationController?.isNavigationBarHidden = false
         }
     }
 }

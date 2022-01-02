@@ -42,14 +42,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UserManagerProtocol {
     func userDidLogout() {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        //popToRootViewController(animated: true)
-        //self.navigationController?.isNavigationBarHidden = false
     }
     
     func errorOccured(error: Error?) {
         print(error ?? "An error occured")
     }
-    
     
 }
 
@@ -73,7 +70,6 @@ extension ProfileViewController: UICollectionViewDelegate {
 
 extension ProfileViewController: ProfileFetchManagerProtocol {
     func postLoaded() {
-        print("salami")
         self.postCollectionView.reloadData()
     }
 }
