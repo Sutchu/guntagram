@@ -31,13 +31,8 @@ class HomeViewController: UIViewController {
         fetchManager.fetchNewPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //self.tabBarController?.navigationItem.hidesBackButton = true
-        //self.navigationController?.isNavigationBarHidden = true
-    }
-    
     @objc func refresh(_ sender: AnyObject) {
-       // Code to refresh table view
+        // Code to refresh table view
         fetchManager.fetchNewPosts()
     }
 

@@ -36,6 +36,7 @@ class ProfileFetchManager {
                     let imagePath = document.get("image_path") as! String
                     let ownerReference = document.get("owner") as! DocumentReference
                     let likingUsers = document.get("liking_users") as! [Dictionary<String, Any>]
+                    let uploadTime = document.get("upload_time") as! TimeInterval
                     var likingUserArray: [User] = []
                     for likingUser in likingUsers {
                         let userName = likingUser["user_name"] as! String
@@ -56,7 +57,7 @@ class ProfileFetchManager {
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(currentUser)
-                                self.posts[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked)
+                                self.posts[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked, uploadTime: uploadTime)
                                 self.delegate?.postLoaded()
                             }
                         }

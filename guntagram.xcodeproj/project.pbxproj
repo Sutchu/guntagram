@@ -21,6 +21,7 @@
 		0F2DAC87277E338800507162 /* ProfileFetchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC86277E338800507162 /* ProfileFetchManager.swift */; };
 		0F2DAC89277E5B6300507162 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC88277E5B6300507162 /* ProfileCollectionViewCell.swift */; };
 		0F2DAC8C277E602900507162 /* ProfileFetchManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */; };
+		0F6F443E2783BF7300F83F95 /* LoginRegisterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6F443D2783BF7300F83F95 /* LoginRegisterButton.swift */; };
 		0F81A60E277658F300920315 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60D277658F300920315 /* User.swift */; };
 		0F81A610277659E700920315 /* UserRegisterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A60F277659E700920315 /* UserRegisterManager.swift */; };
 		0F81A613277662B500920315 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F81A612277662B500920315 /* UserError.swift */; };
@@ -68,6 +69,7 @@
 		0F2DAC86277E338800507162 /* ProfileFetchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFetchManager.swift; sourceTree = "<group>"; };
 		0F2DAC88277E5B6300507162 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFetchManagerProtocol.swift; sourceTree = "<group>"; };
+		0F6F443D2783BF7300F83F95 /* LoginRegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterButton.swift; sourceTree = "<group>"; };
 		0F81A60D277658F300920315 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0F81A60F277659E700920315 /* UserRegisterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterManager.swift; sourceTree = "<group>"; };
 		0F81A612277662B500920315 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		0F079FD1276BBA9D00CD0F50 /* guntagram */ = {
 			isa = PBXGroup;
 			children = (
+				0F6F443C2783BF3A00F83F95 /* CustomUIElements */,
 				0FCF0CA927777CF8009F1C0A /* Defaults */,
 				0F81A6112776628A00920315 /* Errors */,
 				0F93FCEF27714DEB004779D0 /* Protocols */,
@@ -187,6 +190,14 @@
 				0F2DAC8B277E602900507162 /* ProfileFetchManagerProtocol.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		0F6F443C2783BF3A00F83F95 /* CustomUIElements */ = {
+			isa = PBXGroup;
+			children = (
+				0F6F443D2783BF7300F83F95 /* LoginRegisterButton.swift */,
+			);
+			path = CustomUIElements;
 			sourceTree = "<group>";
 		};
 		0F81A60B277658A400920315 /* Posts */ = {
@@ -428,6 +439,7 @@
 				49ED4302277A5EB100E15F98 /* PostCellDelegate.swift in Sources */,
 				0F81A61927767F0000920315 /* PostUploadManager.swift in Sources */,
 				0F93FCEB2771407C004779D0 /* PostFetchManager.swift in Sources */,
+				0F6F443E2783BF7300F83F95 /* LoginRegisterButton.swift in Sources */,
 				0FCF0CA8277772F7009F1C0A /* PostUpdateManagerProtocol.swift in Sources */,
 				0F81A61527766B8100920315 /* UserRegisterManagerProtocol.swift in Sources */,
 				49517EFD277A7C3300678059 /* CommentUploadManager.swift in Sources */,

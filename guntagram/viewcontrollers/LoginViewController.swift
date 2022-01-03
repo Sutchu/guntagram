@@ -11,7 +11,8 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var loginButton: LoginRegisterButton!
+    
     let userDataSource = UserLoginManager()
     
     override func viewDidLoad() {
@@ -22,11 +23,20 @@ class LoginViewController: UIViewController {
         
         loginButton.isEnabled = false
         loginButton.alpha = 0.5
+        
+        //clearInputFields()
+    }
+    
+    func clearInputFields() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         if let password = passwordTextField.text, let email = emailTextField.text {
             self.userDataSource.logInUser(email: email, password: password)
+            view?.endEditing(true) // dismiss keyboard
+            loginButton.showLoading()
         }
     }
     
@@ -36,10 +46,11 @@ extension LoginViewController: UserLoginManagerProtocol {
     
     func loginFailed(error: Error) {
         print(error)
+        self.loginButton.hideLoading()
     }
     
     func userLoggedIn() {
-        //self.navigationController?.navigationBar.isHidden = true
+        self.loginButton.hideLoading()
         self.performSegue(withIdentifier: "Login", sender: self)
     }
     

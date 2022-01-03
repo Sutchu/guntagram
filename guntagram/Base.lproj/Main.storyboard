@@ -30,7 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NF1-Hi-WxD">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NF1-Hi-WxD" customClass="LoginRegisterButton" customModule="guntagram" customModuleProvider="target">
                                 <rect key="frame" x="10" y="508" width="408" height="50"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Log In">
@@ -62,7 +62,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="gAD-8i-337"/>
                                 </constraints>
-                                <buttonConfiguration key="configuration" style="plain" title="Already have an account? Log In." cornerStyle="fixed">
+                                <buttonConfiguration key="configuration" style="plain" title="Already have an account? Sign Up." cornerStyle="fixed">
                                     <backgroundConfiguration key="background" cornerRadius="0.0">
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="strokeColor" red="0.149019599" green="0.149019599" blue="0.149019599" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -247,7 +247,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="QTJ-yw-ggQ"/>
                                 </constraints>
-                                <buttonConfiguration key="configuration" style="plain" title="Don't have an account? Sign Up." cornerStyle="fixed">
+                                <buttonConfiguration key="configuration" style="plain" title="Don't have an account? Log In." cornerStyle="fixed">
                                     <backgroundConfiguration key="background" cornerRadius="0.0" strokeOutset="0.0">
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="strokeColor" red="0.149019599" green="0.149019599" blue="0.149019599" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -311,7 +311,7 @@
                                 <rect key="frame" x="0.0" y="225" width="428" height="530"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Rie-BW-9rL">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="0.0" id="Rie-BW-9rL">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="2"/>
@@ -385,13 +385,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q3-fc-BXA">
-                                <rect key="frame" x="282.66666666666669" y="49.666666666666657" width="12" height="21"/>
+                                <rect key="frame" x="342.66666666666669" y="49.666666666666657" width="12" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLM-Kj-khV">
-                                <rect key="frame" x="272" y="70.666666666666657" width="33.333333333333314" height="17"/>
+                                <rect key="frame" x="332" y="70.666666666666657" width="33.333333333333314" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -435,7 +435,7 @@
                             <constraint firstItem="tUO-G3-AsU" firstAttribute="leading" secondItem="gSI-81-29x" secondAttribute="leading" id="omA-1k-BfW"/>
                             <constraint firstItem="bLM-Kj-khV" firstAttribute="top" secondItem="6q3-fc-BXA" secondAttribute="bottom" id="rYf-MY-5bd"/>
                             <constraint firstItem="k1g-S1-Q34" firstAttribute="centerY" secondItem="S1U-YU-yDV" secondAttribute="centerY" id="u2u-qU-XdC"/>
-                            <constraint firstItem="bLM-Kj-khV" firstAttribute="leading" secondItem="st0-0K-trA" secondAttribute="trailing" constant="40" id="uHw-hh-KHY"/>
+                            <constraint firstItem="bLM-Kj-khV" firstAttribute="leading" secondItem="st0-0K-trA" secondAttribute="trailing" constant="100" id="uHw-hh-KHY"/>
                             <constraint firstItem="tUO-G3-AsU" firstAttribute="top" secondItem="gSI-81-29x" secondAttribute="bottom" constant="8" symbolic="YES" id="wBp-5a-nDj"/>
                             <constraint firstItem="kmh-nR-0Vj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gSI-81-29x" secondAttribute="trailing" symbolic="YES" id="xYl-3t-wwM"/>
                             <constraint firstItem="gSI-81-29x" firstAttribute="leading" secondItem="w0B-DD-YHz" secondAttribute="leading" id="yaA-b6-fS3"/>
@@ -549,7 +549,7 @@
                                                         <action selector="likeButtonPressed:" destination="dLW-7T-57F" eventType="touchUpInside" id="mQr-en-Ky5"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
                                                     <rect key="frame" x="10" y="470" width="408" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="NGe-O5-8ay"/>
@@ -650,6 +650,7 @@
                                             <outlet property="ownerUsernameLabel" destination="W94-wq-wRU" id="K4U-KX-iol"/>
                                             <outlet property="postImage" destination="5yK-JV-FjB" id="4Vf-bx-Wbd"/>
                                             <outlet property="stackView" destination="xUw-YL-qSF" id="NFv-lQ-rmT"/>
+                                            <outlet property="uploadTimeLabel" destination="0QF-hw-SKh" id="dCQ-1R-9Jv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -757,7 +758,7 @@
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="C5u-yo-Kvq" id="ciU-eF-zwB"/>
                                 </connections>
@@ -814,7 +815,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="wua-Dy-dAP"/>
-        <segue reference="Jyk-1B-RBY"/>
+        <segue reference="W0T-Op-fxQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Guntagram-Logo" width="440" height="126"/>

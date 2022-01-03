@@ -12,7 +12,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var registerButton: LoginRegisterButton!
     
     let userDataSource = UserRegisterManager()
     
@@ -25,14 +25,24 @@ class RegisterViewController: UIViewController {
         
         registerButton.isEnabled = false
         registerButton.alpha = 0.5
+        
+        clearInputFields()
+    }
+    
+    func clearInputFields() {
+        usernameTextField.text = ""
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     @IBAction func registerPressed(_ sender: Any) {
         if let email = emailTextField.text,
            let password = passwordTextField.text,
             let userName = usernameTextField.text {
-                
             userDataSource.createNewUser(email: email, userName: userName, password: password)
+            
+            view?.endEditing(true) // dismiss keyboard
+            registerButton.showLoading()
         }
     }
 }
@@ -40,12 +50,13 @@ class RegisterViewController: UIViewController {
 extension RegisterViewController: UserRegisterManagerProtocol {
     
     func userIsRegistered() {
-        self.navigationController?.navigationBar.isHidden = true
+        registerButton.hideLoading()
         self.performSegue(withIdentifier: "Register", sender: self)
     }
     
     func registerFailed(error: Error) {
         print(error)
+        registerButton.hideLoading()
     }
     
 }

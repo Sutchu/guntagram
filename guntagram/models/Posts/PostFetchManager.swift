@@ -34,6 +34,7 @@ class PostFetchManager {
                     let imagePath = document.get("image_path") as! String
                     let ownerReference = document.get("owner") as! DocumentReference
                     let likingUsers = document.get("liking_users") as! [Dictionary<String, Any>]
+                    let uploadTime = document.get("upload_time") as! TimeInterval
                     var likingUserArray: [User] = []
                     for likingUser in likingUsers {
                         let userName = likingUser["user_name"] as! String
@@ -54,7 +55,7 @@ class PostFetchManager {
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(FireStoreConstants.shared.currentUser!)
-                                self.postArray[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked)
+                                self.postArray[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked, uploadTime: uploadTime)
                                 self.delegate?.postLoaded()
                             }
                         }

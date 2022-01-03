@@ -16,6 +16,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var uploadTimeLabel: UILabel!
+    
     var delegate: PostCellDelegate?
     
     override func awakeFromNib() {
@@ -36,6 +38,9 @@ class PostTableViewCell: UITableViewCell {
             self.likeLabel.text = "\(postObject.likeCount) likes"
             self.postImage.image = postObject.uiImage
             self.ownerUsernameLabel.text = postObject.owner.userName
+            self.uploadTimeLabel.text = postObject.uploadTimeDescription
+            
+            
             if postObject.isPostLiked {
                 likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 likeButton.tintColor = UIColor.red
