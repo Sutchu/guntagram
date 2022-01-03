@@ -16,6 +16,8 @@ class ProfileFetchManager {
     var posts: [Post?] = []
     var delegate: ProfileFetchManagerProtocol?
     
+    var totalLikeCount: Int = 0
+    
     func fetchPosts(user: User) {
         db.collection("posts").whereField("owner", isEqualTo: user.userReference).order(by: "upload_time", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -23,12 +25,14 @@ class ProfileFetchManager {
             } else {
                 let documents = querySnapshot!.documents
                 self.posts = [Post?](repeating: nil, count: documents.count)
+                self.totalLikeCount = 0
                 if documents.count == 0 {
                     self.delegate?.postLoaded()
                 }
                 let currentUser = FireStoreConstants.shared.currentUser!
                 for (index, document) in documents.enumerated() {
                     let likeCount = document.get("like_count") as! Int
+                    self.totalLikeCount += likeCount
                     let imagePath = document.get("image_path") as! String
                     let ownerReference = document.get("owner") as! DocumentReference
                     let likingUsers = document.get("liking_users") as! [Dictionary<String, Any>]
@@ -48,6 +52,7 @@ class ProfileFetchManager {
                     imageRef.getData(maxSize: 1 * 10024 * 10024) { data, error in
                         if let error = error {
                             print("Error occured when getting image with url from storage \(error)")
+                            //self.delegate?.postLoaded()
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(currentUser)
@@ -63,6 +68,10 @@ class ProfileFetchManager {
     
     func getPostCount() -> Int {
         return posts.count
+    }
+    
+    func getTotalLikeCount() -> Int {
+        return totalLikeCount
     }
     
     func getPostAt(index: Int) -> Post? {

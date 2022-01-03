@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     let userDataSource = UserLoginManager()
     
     override func viewDidLoad() {
@@ -18,7 +19,9 @@ class LoginViewController: UIViewController {
         userDataSource.delegate = self
         self.passwordTextField.delegate = self
         self.emailTextField.delegate = self
-        // Do any additional setup after loading the view.
+        
+        loginButton.isEnabled = false
+        loginButton.alpha = 0.5
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -36,7 +39,7 @@ extension LoginViewController: UserLoginManagerProtocol {
     }
     
     func userLoggedIn() {
-        self.navigationController?.navigationBar.isHidden = true
+        //self.navigationController?.navigationBar.isHidden = true
         self.performSegue(withIdentifier: "Login", sender: self)
     }
     
@@ -44,7 +47,17 @@ extension LoginViewController: UserLoginManagerProtocol {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if (passwordTextField.text?.count ?? 0 > 5 && emailTextField.text?.count != 0) {
+            loginButton.isEnabled = true
+            loginButton.alpha = 1
+        } else {
+            loginButton.isEnabled = false
+            loginButton.alpha = 0.5
         }
+    }
 }

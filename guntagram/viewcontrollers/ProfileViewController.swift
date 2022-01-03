@@ -12,6 +12,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var postCollectionView: UICollectionView!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var postCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     var selectedUser: User? = FireStoreConstants.shared.currentUser
     let userManager = UserManager()
@@ -52,7 +54,7 @@ extension ProfileViewController: UserManagerProtocol {
 
 extension ProfileViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        profileFetchManager.getPostCount()
+        return profileFetchManager.getPostCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -70,6 +72,8 @@ extension ProfileViewController: UICollectionViewDelegate {
 
 extension ProfileViewController: ProfileFetchManagerProtocol {
     func postLoaded() {
+        self.postCountLabel.text = String(profileFetchManager.getPostCount())
+        self.likeCountLabel.text = String(profileFetchManager.getTotalLikeCount())
         self.postCollectionView.reloadData()
     }
 }

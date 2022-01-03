@@ -12,7 +12,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
     
     let userDataSource = UserRegisterManager()
     
@@ -22,19 +22,10 @@ class RegisterViewController: UIViewController {
         self.usernameTextField.delegate = self
         self.emailTextField.delegate = self
         self.passwordTextField.delegate = self
-        // Do any additional setup after loading the view.
+        
+        registerButton.isEnabled = false
+        registerButton.alpha = 0.5
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func registerPressed(_ sender: Any) {
         if let email = emailTextField.text,
@@ -61,8 +52,17 @@ extension RegisterViewController: UserRegisterManagerProtocol {
 
 extension RegisterViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            self.view.endEditing(true)
-            return false
+        self.view.endEditing(true)
+        return false
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if (passwordTextField.text?.count ?? 0 > 5 && emailTextField.text?.count != 0 && usernameTextField.text?.count != 0) {
+            registerButton.isEnabled = true
+            registerButton.alpha = 1
+        } else {
+            registerButton.isEnabled = false
+            registerButton.alpha = 0.5
         }
+    }
 }
-
