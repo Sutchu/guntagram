@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var uploadPostButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
@@ -26,7 +27,9 @@ class ProfileViewController: UIViewController {
         self.profileFetchManager.delegate = self
         self.usernameLabel.text = self.selectedUser?.userName
         if (isCallerSegue) {
-            self.logoutButton.setTitle("", for: .normal)
+            self.hidesBottomBarWhenPushed = true
+            self.logoutButton.isHidden = true
+            self.uploadPostButton.isHidden = true
         }
         // Do any additional setup after loading the view.
     }

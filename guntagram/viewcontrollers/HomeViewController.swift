@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         postsTableView.addSubview(refreshControl) // not required when using UITableViewController
+        refreshControl.tintColor = UIColor.white
+
 
         fetchManager.delegate = self
         updateManager.delegate = self
@@ -39,20 +41,18 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "comments") {
             let destination = segue.destination as! CommentsViewController
-            destination.tabBarController?.tabBar.isHidden = true
+            
             destination.selectedPost = self.selectedPost
             self.selectedPost = nil
         } else if (segue.identifier == "profile") {
             let destination = segue.destination as! ProfileViewController
-            destination.tabBarController?.tabBar.isHidden = true
             destination.selectedUser = self.selectedProfile
             destination.isCallerSegue = true
             self.selectedProfile = nil
         }
     }
     @IBAction func guntagramLogoPressed(_ sender: Any) {
-        //postsTableView.setContentOffset(.zero, animated: true)
-        fetchManager.fetchNewPosts(batchSize: 2)
+        postsTableView.setContentOffset(.zero, animated: true)
     }
     
 }
@@ -131,6 +131,5 @@ extension HomeViewController: PostCellDelegate {
             performSegue(withIdentifier: "comments", sender: self)
         }
     }
-    
     
 }

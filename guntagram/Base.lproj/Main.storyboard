@@ -483,6 +483,7 @@
                         <outlet property="logoutButton" destination="e3e-To-heD" id="uai-Dc-0sW"/>
                         <outlet property="postCollectionView" destination="EH2-zv-ypt" id="58C-e7-5At"/>
                         <outlet property="postCountLabel" destination="k1g-S1-Q34" id="MaV-TI-VZ0"/>
+                        <outlet property="uploadPostButton" destination="mDN-df-Fo9" id="OqS-Mq-eAe"/>
                         <outlet property="usernameLabel" destination="w0B-DD-YHz" id="1wU-8C-laQ"/>
                     </connections>
                 </viewController>
@@ -816,7 +817,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9ee-LE-InJ"/>
+        <segue reference="wua-Dy-dAP"/>
         <segue reference="Jyk-1B-RBY"/>
     </inferredMetricsTieBreakers>
     <resources>
