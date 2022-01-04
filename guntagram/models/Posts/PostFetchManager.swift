@@ -14,11 +14,10 @@ class PostFetchManager {
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
     private var lastFetchTimeStamp = 0.0
-    var postArray: [Post?] = []
+    private var postArray: [Post?] = []
     var delegate: PostFetchManagerProtocol?
-    
 
-    func fetchNewPosts() {
+    func fetchNewPosts(startingIndex: Int, endingIndex: Int) {
         db.collection("posts").whereField("upload_time", isGreaterThanOrEqualTo: self.lastFetchTimeStamp).order(by: "upload_time", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -43,7 +42,7 @@ class PostFetchManager {
                     }
                     let ownerUserName = document.get("owner_username") as! String
                     let owner = User(userName: ownerUserName, userReference: ownerReference)
-                    //let uploadTime = document.value(forKey: "upload_time")
+
                     // Create a reference to the file you want to download
                     let imageRef = self.storage.child(imagePath)
 
@@ -63,6 +62,11 @@ class PostFetchManager {
                 }
             }
         }
+    }
+    
+    func refreshPostArray() {
+        //postArray = []
+        fetchNewPosts(startingIndex: 1, endingIndex: 10)
     }
     
     func getPostAtIndex(index: Int) -> Post? {

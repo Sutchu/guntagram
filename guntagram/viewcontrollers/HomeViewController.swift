@@ -28,12 +28,12 @@ class HomeViewController: UIViewController {
         updateManager.delegate = self
         // Do any additional setup after loading the view.
         
-        fetchManager.fetchNewPosts()
+        fetchManager.refreshPostArray()
     }
     
     @objc func refresh(_ sender: AnyObject) {
         // Code to refresh table view
-        fetchManager.fetchNewPosts()
+        fetchManager.refreshPostArray()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
