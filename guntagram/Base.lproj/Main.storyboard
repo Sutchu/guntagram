@@ -476,7 +476,7 @@
         <!--Item-->
         <scene sceneID="wWh-6K-A5J">
             <objects>
-                <navigationController id="qqJ-oE-jmy" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="qqJ-oE-jmy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="vWY-Aj-qNG"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="hLd-YP-dhC">
@@ -494,7 +494,7 @@
         <!--Item-->
         <scene sceneID="6zx-xx-MA8">
             <objects>
-                <navigationController interfaceStyle="dark" id="U9p-k1-Y9m" sceneMemberID="viewController">
+                <navigationController id="U9p-k1-Y9m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="a2c-er-3Yb"/>
                     <navigationItem key="navigationItem" id="BhA-IY-xEJ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
@@ -694,7 +694,7 @@
         <!--Comments-->
         <scene sceneID="AVJ-k5-x1v">
             <objects>
-                <viewController id="C5u-yo-Kvq" customClass="CommentsViewController" customModule="guntagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="C5u-yo-Kvq" customClass="CommentsViewController" customModule="guntagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CX2-gi-i3E">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -814,8 +814,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wua-Dy-dAP"/>
-        <segue reference="W0T-Op-fxQ"/>
+        <segue reference="9ee-LE-InJ"/>
+        <segue reference="Jyk-1B-RBY"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Guntagram-Logo" width="440" height="126"/>

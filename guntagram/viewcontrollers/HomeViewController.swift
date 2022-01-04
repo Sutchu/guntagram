@@ -39,10 +39,12 @@ class HomeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "comments") {
             let destination = segue.destination as! CommentsViewController
+            destination.tabBarController?.tabBar.isHidden = true
             destination.selectedPost = self.selectedPost
             self.selectedPost = nil
         } else if (segue.identifier == "profile") {
             let destination = segue.destination as! ProfileViewController
+            destination.tabBarController?.tabBar.isHidden = true
             destination.selectedUser = self.selectedProfile
             destination.isCallerSegue = true
             self.selectedProfile = nil
