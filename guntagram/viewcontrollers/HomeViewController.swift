@@ -51,7 +51,8 @@ class HomeViewController: UIViewController {
         }
     }
     @IBAction func guntagramLogoPressed(_ sender: Any) {
-        postsTableView.setContentOffset(.zero, animated: true)
+        //postsTableView.setContentOffset(.zero, animated: true)
+        fetchManager.fetchNewPosts(batchSize: 2)
     }
     
 }
@@ -90,6 +91,16 @@ extension HomeViewController: UITableViewDelegate {
             return scaledHeight + 110
         }
         return 0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        // If bottom of the screen is reached
+        if offsetY > contentHeight - scrollView.frame.height - 500 {
+            fetchManager.fetchNewPosts(batchSize: 2)
+        }
     }
 }
 
