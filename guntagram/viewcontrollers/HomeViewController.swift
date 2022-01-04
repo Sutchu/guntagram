@@ -50,6 +50,10 @@ class HomeViewController: UIViewController {
             self.selectedProfile = nil
         }
     }
+    @IBAction func guntagramLogoPressed(_ sender: Any) {
+        postsTableView.setContentOffset(.zero, animated: true)
+    }
+    
 }
 
 extension HomeViewController: UITableViewDataSource {
