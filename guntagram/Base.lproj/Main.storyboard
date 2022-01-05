@@ -527,18 +527,18 @@
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="post" rowHeight="500" id="dLW-7T-57F" customClass="PostTableViewCell" customModule="guntagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="500"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="post" rowHeight="524" id="dLW-7T-57F" customClass="PostTableViewCell" customModule="guntagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="524"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dLW-7T-57F" id="aKw-bq-zUX">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="524"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="254" verticalHuggingPriority="253" image="JmHWQOdkgSc33MHJdt3v9XpNScB2-1640645045.403589" translatesAutoresizingMaskIntoConstraints="NO" id="5yK-JV-FjB">
-                                                    <rect key="frame" x="0.0" y="50" width="414" height="390"/>
+                                                    <rect key="frame" x="0.0" y="50" width="414" height="414"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAN-Vm-fwC">
-                                                    <rect key="frame" x="5" y="440" width="30" height="30"/>
+                                                    <rect key="frame" x="5" y="464" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="oAN-Vm-fwC" secondAttribute="height" multiplier="1:1" id="4tT-r8-GCR"/>
                                                         <constraint firstAttribute="height" constant="30" id="mwq-6d-Aqc"/>
@@ -550,7 +550,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEN-p9-wQY">
-                                                    <rect key="frame" x="10" y="470" width="394" height="20"/>
+                                                    <rect key="frame" x="10" y="494" width="394" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="NGe-O5-8ay"/>
                                                     </constraints>
@@ -559,7 +559,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hI-lh-mkG">
-                                                    <rect key="frame" x="45" y="440" width="30" height="30"/>
+                                                    <rect key="frame" x="45" y="464" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7hI-lh-mkG" secondAttribute="height" multiplier="1:1" id="iyk-Yv-4nZ"/>
                                                     </constraints>
@@ -611,7 +611,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 October 2020" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QF-hw-SKh">
-                                                    <rect key="frame" x="10" y="490" width="78.333333333333329" height="10"/>
+                                                    <rect key="frame" x="10" y="514" width="78.333333333333329" height="10"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="hjS-NQ-qcE"/>
                                                     </constraints>

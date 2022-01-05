@@ -13,18 +13,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var loginButton: LoginRegisterButton!
     
-    let userDataSource = UserLoginManager()
+    let userLoginManager = UserLoginManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userDataSource.delegate = self
+        userLoginManager.delegate = self
         self.passwordTextField.delegate = self
         self.emailTextField.delegate = self
         
         loginButton.isEnabled = false
         loginButton.alpha = 0.5
-        
-        //clearInputFields()
+    }
+    
+
+    override func viewDidAppear(_ animated: Bool) {
+        userLoginManager.checkSavedState()
+        clearInputFields()
     }
     
     func clearInputFields() {
@@ -34,7 +38,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         if let password = passwordTextField.text, let email = emailTextField.text {
-            self.userDataSource.logInUser(email: email, password: password)
+            self.userLoginManager.logInUser(email: email, password: password)
             view?.endEditing(true) // dismiss keyboard
             loginButton.showLoading()
         }

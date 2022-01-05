@@ -25,7 +25,9 @@ class RegisterViewController: UIViewController {
         
         registerButton.isEnabled = false
         registerButton.alpha = 0.5
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         clearInputFields()
     }
     

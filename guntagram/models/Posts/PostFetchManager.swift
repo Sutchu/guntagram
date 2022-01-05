@@ -42,8 +42,10 @@ class PostFetchManager {
         query.getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err.localizedDescription)")
+                self.isBusy = false
             } else if querySnapshot!.isEmpty {
                 self.delegate?.postLoaded()
+                self.isBusy = false
             } else {
                 let documents = querySnapshot!.documents
                 self.postArray.insert(contentsOf: [Post?](repeating: nil, count: documents.count), at: self.postArray.endIndex)
@@ -71,6 +73,7 @@ class PostFetchManager {
                     imageRef.getData(maxSize: 1 * 10024 * 10024) { data, error in
                         if let error = error {
                             print("Error occured when getting image with url from storage \(error.localizedDescription)")
+                            self.isBusy = false
                         } else {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(FireStoreConstants.shared.currentUser!)
@@ -92,6 +95,9 @@ class PostFetchManager {
     }
     
     func refreshPostArray() {
+        if isBusy {
+            return
+        }
         postArray = []
         fetchNewPosts()
     }

@@ -10,11 +10,11 @@ import UIKit
 
 class LoginRegisterButton: UIButton {
     var originalText: String?
-    var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator: UIActivityIndicatorView?
     
     func hideLoading() {
         self.setTitle(originalText, for: .normal)
-        activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     func showLoading() {
@@ -38,10 +38,10 @@ class LoginRegisterButton: UIButton {
     }
     
     private func showSpinning() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(activityIndicator)
+        activityIndicator?.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(activityIndicator!)
         centerActivityIndicatorInButton()
-        activityIndicator.startAnimating()
+        activityIndicator?.startAnimating()
     }
     
     private func centerActivityIndicatorInButton() {

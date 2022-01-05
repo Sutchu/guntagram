@@ -14,6 +14,18 @@ class UserLoginManager {
     private let db = Firestore.firestore()
     var delegate: UserLoginManagerProtocol?
     
+    func checkSavedState() {
+        if let currentUser = Auth.auth().currentUser {
+            self.db.collection("users").document(currentUser.uid).getDocument() { querySnapshot, err in
+                if let querySnapshot = querySnapshot {
+                    let userName = querySnapshot.get("user_name") as! String
+                    FireStoreConstants.shared.currentUser = User(userName: userName, userReference: querySnapshot.reference)
+                    self.delegate?.userLoggedIn()
+                }
+            }
+        }
+    }
+    
     func logInUser(email: String, password: String) {
         
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
