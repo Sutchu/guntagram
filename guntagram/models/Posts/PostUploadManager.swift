@@ -18,7 +18,7 @@ class PostUploadManager {
     func uploadPost(imageData: Data) {
         
         if let userId = Auth.auth().currentUser?.uid {
-            let timestamp = NSDate().timeIntervalSince1970
+            let timestamp = NSDate().timeIntervalSince1970// - Double.random(in: 0..<604800)
             let imagePath = "images/\(userId)-\(timestamp).png"
             let userReference = db.collection("users").document(userId)
             var error: Error?
