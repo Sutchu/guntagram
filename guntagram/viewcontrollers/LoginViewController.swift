@@ -51,6 +51,9 @@ extension LoginViewController: UserLoginManagerProtocol {
     func loginFailed(error: Error) {
         print(error)
         self.loginButton.hideLoading()
+        let alert = UIAlertController(title: "Error Occured", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func userLoggedIn() {

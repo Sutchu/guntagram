@@ -15,7 +15,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postCountLabel: UILabel!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var editProfileButton: UIButton!
     
+    let refreshControl = UIRefreshControl()
     var selectedUser: User? = FireStoreConstants.shared.currentUser
     let userManager = UserManager()
     let profileFetchManager = ProfileFetchManager()
@@ -27,16 +29,27 @@ class ProfileViewController: UIViewController {
         self.profileFetchManager.delegate = self
         self.usernameLabel.text = self.selectedUser?.userName
         if (isCallerSegue) {
-            self.hidesBottomBarWhenPushed = true
             self.logoutButton.isHidden = true
             self.uploadPostButton.isHidden = true
+            self.editProfileButton.isHidden = true
+           // self.hidesBottomBarWhenPushed = true
+            
         }
+                if let selectedUser = selectedUser {
+            self.profileFetchManager.fetchPosts(user: selectedUser)
+            refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+            refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+            postCollectionView.refreshControl = refreshControl // not required when using UITableViewController
+            refreshControl.tintColor = UIColor.white
+        }
+        
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
-        if let selectedUser = selectedUser {
-            self.profileFetchManager.fetchPosts(user: selectedUser)
-        }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        // Code to refresh table view
+        
+        profileFetchManager.fetchPosts(user: self.selectedUser!)
     }
 
     @IBAction func logoutButtonPressed(_ sender: Any) {
@@ -78,6 +91,7 @@ extension ProfileViewController: ProfileFetchManagerProtocol {
         self.postCountLabel.text = String(profileFetchManager.getPostCount())
         self.likeCountLabel.text = String(profileFetchManager.getTotalLikeCount())
         self.postCollectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

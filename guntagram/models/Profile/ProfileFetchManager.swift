@@ -19,6 +19,7 @@ class ProfileFetchManager {
     var totalLikeCount: Int = 0
     
     func fetchPosts(user: User) {
+        let dispatchGroup = DispatchGroup()
         db.collection("posts").whereField("owner", isEqualTo: user.userReference).order(by: "upload_time", descending: true).getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -50,6 +51,7 @@ class ProfileFetchManager {
                     let imageRef = self.storage.child(imagePath)
 
                     // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    dispatchGroup.enter()
                     imageRef.getData(maxSize: 1 * 10024 * 10024) { data, error in
                         if let error = error {
                             print("Error occured when getting image with url from storage \(error)")
@@ -58,11 +60,16 @@ class ProfileFetchManager {
                             if let image = UIImage(data: data!) {
                                 let isPostLiked = likingUserArray.contains(currentUser)
                                 self.posts[index] = Post(uiImage: image, likeCount: likeCount, owner: owner, postReference: document.reference, likingUsers: likingUserArray, isPostLiked: isPostLiked, uploadTime: uploadTime)
-                                self.delegate?.postLoaded()
+                                dispatchGroup.leave()
+                                
                             }
                         }
                     }
                 }
+            }
+            dispatchGroup.notify(queue: .main) {
+                self.delegate?.postLoaded()
+                //self.isBusy = false
             }
         }
     }

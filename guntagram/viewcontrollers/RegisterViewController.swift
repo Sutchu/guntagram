@@ -59,6 +59,9 @@ extension RegisterViewController: UserRegisterManagerProtocol {
     func registerFailed(error: Error) {
         print(error)
         registerButton.hideLoading()
+        let alert = UIAlertController(title: "Error Occured", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
