@@ -584,15 +584,15 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="404" height="30"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mLw-fK-cpQ">
-                                                                    <rect key="frame" x="0.0" y="0.99999999999999822" width="30" height="28.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="0.99999999999999822" width="0.0" height="28.666666666666664"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="30" id="7l3-mU-bTJ"/>
-                                                                        <constraint firstAttribute="width" secondItem="mLw-fK-cpQ" secondAttribute="height" multiplier="1:1" id="qEL-pb-Xxf"/>
+                                                                        <constraint firstAttribute="width" id="7l3-mU-bTJ"/>
+                                                                        <constraint firstAttribute="height" constant="29.999999999999993" id="9bZ-YY-4Sl"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alicem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W94-wq-wRU">
-                                                                    <rect key="frame" x="40" y="0.0" width="364" height="30"/>
+                                                                    <rect key="frame" x="10" y="0.0" width="394" height="30"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
