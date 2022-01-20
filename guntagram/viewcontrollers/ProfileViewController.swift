@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var userProfilePhoto: UIImageView!
     @IBOutlet weak var uploadPostButton: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postCountLabel: UILabel!
@@ -28,6 +29,11 @@ class ProfileViewController: UIViewController {
         self.userManager.delegate = self
         self.profileFetchManager.delegate = self
         self.usernameLabel.text = self.selectedUser?.userName
+        userProfilePhoto.layer.borderWidth = 1
+        userProfilePhoto.layer.masksToBounds = false
+        userProfilePhoto.layer.borderColor = UIColor.black.cgColor
+        userProfilePhoto.layer.cornerRadius = userProfilePhoto.frame.height/2
+        userProfilePhoto.clipsToBounds = true
         if (isCallerSegue) {
             self.logoutButton.isHidden = true
             self.uploadPostButton.isHidden = true
@@ -35,8 +41,13 @@ class ProfileViewController: UIViewController {
            // self.hidesBottomBarWhenPushed = true
             
         }
-                if let selectedUser = selectedUser {
+        if let selectedUser = selectedUser {
             self.profileFetchManager.fetchPosts(user: selectedUser)
+            self.profileFetchManager.fetchProfilePhoto(user: selectedUser) {image in
+                if let image = image {
+                    self.userProfilePhoto.image = image
+                }
+            }
             refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
             refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
             postCollectionView.refreshControl = refreshControl // not required when using UITableViewController
@@ -46,6 +57,13 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func changeProfilePhoto(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true)
+    }
     @objc func refresh(_ sender: AnyObject) {
         // Code to refresh table view
         
@@ -98,5 +116,23 @@ extension ProfileViewController: ProfileFetchManagerProtocol {
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.view.frame.size.width/3-1, height: self.view.frame.size.width/3-1)
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        guard let imageData = image.pngData() else {
+            return
+        }
+        self.userManager.changeProfilePhoto(imageData: imageData)
+        self.userProfilePhoto.image = image
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

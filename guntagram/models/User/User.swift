@@ -13,5 +13,5 @@ struct User: Equatable {
     
     let userName: String
     let userReference: DocumentReference
-    
+    var profilePhoto: UIImage?
 }

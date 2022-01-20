@@ -74,6 +74,30 @@ class ProfileFetchManager {
         }
     }
     
+    func fetchProfilePhoto(user: User, completion: @escaping (_ image: UIImage?) -> Void) {
+        let userReference = user.userReference
+        userReference.getDocument { (document, error) in
+            if let error = error {
+               completion(nil)
+            }
+            if let document = document, document.exists {
+                if let imagePath = document.data()!["profile-photo"] as? String{
+                    let imageRef = self.storage.child(imagePath)
+                    imageRef.getData(maxSize: 1 * 10024 * 10024) { data, error in
+                        if let error = error {
+                            print("Error occured when getting image with url from storage \(error)")
+                            //self.delegate?.postLoaded()
+                        } else {
+                            if let image = UIImage(data: data!) {
+                                completion(image)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     func getPostCount() -> Int {
         return posts.count
     }
